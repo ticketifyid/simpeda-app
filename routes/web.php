@@ -1,12 +1,13 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Guest\LandingController;
 use App\Http\Controllers\Superadmin\DashboardController as SuperadminDashboardController;
-use App\Http\Controllers\Superadmin\TicketController as SuperadminTicketController;
 use App\Http\Controllers\Superadmin\DiscountController as SuperadminDiscountController;
 use App\Http\Controllers\Superadmin\OrderController as SuperadminOrderController;
+use App\Http\Controllers\Superadmin\TicketController as SuperadminTicketController;
+use Illuminate\Support\Facades\Route;
 
 
 Route::middleware('api.guest')->group(function () {
@@ -15,6 +16,9 @@ Route::middleware('api.guest')->group(function () {
 });
 
 Route::match(['get', 'post'], '/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/', [LandingController::class, 'index'])->name('landing');
+Route::get('/order/{ticketId}', [LandingController::class, 'orderForm'])->name('landing.order');
+Route::post('/order', [LandingController::class, 'orderStore'])->name('landing.order.store');
 
 Route::middleware('api.auth')->group(function () {
 

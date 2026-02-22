@@ -128,4 +128,9 @@ class ApiService
     {
         return $this->client($token)->delete("/admin/orders/{$id}");
     }
+    // Order - Public (Guest)
+    public function createOrder(array $data)
+    {
+        return $this->client()->post('/orders', $data);
+    }
 }
