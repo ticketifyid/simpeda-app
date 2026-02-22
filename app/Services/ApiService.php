@@ -105,4 +105,27 @@ class ApiService
     {
         return $this->client($token)->delete("/admin/discounts/{$id}");
     }
+
+    // Order - Admin
+    public function getOrders(string $token)
+    {
+        return $this->client($token)->get('/admin/orders');
+    }
+
+    public function getOrder(string $token, int $id)
+    {
+        return $this->client($token)->get("/admin/orders/{$id}");
+    }
+
+    public function updateOrderStatus(string $token, int $id, string $status)
+    {
+        return $this->client($token)->put("/admin/orders/{$id}/status", [
+            'status' => $status,
+        ]);
+    }
+
+    public function deleteOrder(string $token, int $id)
+    {
+        return $this->client($token)->delete("/admin/orders/{$id}");
+    }
 }

@@ -72,6 +72,18 @@
                     </a>
                 </div>
                 <!--end:Menu item-->
+
+                <!--begin:Menu item-->
+                <div class="menu-item {{ request()->routeIs('superadmin.order*') ? 'here show' : '' }}">
+                    <a href="{{ route('superadmin.order') }}"
+                        class="menu-link {{ request()->routeIs('superadmin.order*') ? 'active' : '' }}">
+                        <span class="menu-icon">
+                            <i class="ki-outline ki-basket fs-2"></i>
+                        </span>
+                        <span class="menu-title">Orders</span>
+                    </a>
+                </div>
+                <!--end:Menu item-->
             </div>
             <!--end::Menu-->
         </div>
