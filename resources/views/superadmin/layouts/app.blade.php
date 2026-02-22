@@ -43,6 +43,7 @@ License: For each use you must have a valid license purchased only from above li
     <script>
         // Frame-busting to prevent site from being loaded within a frame without permission (click-jacking) if (window.top != window.self) { window.top.location.replace(window.self.location.href); }
     </script>
+    @stack('styles')
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -97,6 +98,7 @@ License: For each use you must have a valid license purchased only from above li
     </div>
     <!--end::App-->
     <!--begin::Javascript-->
+    @stack('scripts')
     <script>
         var hostUrl = "assets/";
     </script>

@@ -49,7 +49,7 @@
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
                 <div data-kt-menu-trigger="click" class="menu-item here show menu-accordion">
-                    <a href="{{ route('superadmin.dashboard') }}" class="menu-link">
+                    <a href="{{ route('superadmin.ticket') }}" class="menu-link">
                         <span class="menu-icon">
                             <i class="ki-outline ki-element-11 fs-2"></i>
                         </span>
