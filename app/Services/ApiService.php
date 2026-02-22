@@ -80,4 +80,29 @@ class ApiService
     {
         return $this->client($token)->delete("/admin/tickets/{$id}");
     }
+    // Discount - Admin
+    public function getDiscounts(string $token)
+    {
+        return $this->client($token)->get('/admin/discounts');
+    }
+
+    public function getDiscount(string $token, int $id)
+    {
+        return $this->client($token)->get("/admin/discounts/{$id}");
+    }
+
+    public function createDiscount(string $token, array $data)
+    {
+        return $this->client($token)->post('/admin/discounts', $data);
+    }
+
+    public function updateDiscount(string $token, int $id, array $data)
+    {
+        return $this->client($token)->put("/admin/discounts/{$id}", $data);
+    }
+
+    public function deleteDiscount(string $token, int $id)
+    {
+        return $this->client($token)->delete("/admin/discounts/{$id}");
+    }
 }

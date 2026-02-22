@@ -38,22 +38,37 @@
                 </div>
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
-                <div data-kt-menu-trigger="click" class="menu-item here show menu-accordion">
-                    <a href="{{ route('superadmin.dashboard') }}" class="menu-link">
+                <div class="menu-item {{ request()->routeIs('superadmin.dashboard') ? 'here show' : '' }}">
+                    <a href="{{ route('superadmin.dashboard') }}"
+                        class="menu-link {{ request()->routeIs('superadmin.dashboard') ? 'active' : '' }}">
                         <span class="menu-icon">
-                            <i class="ki-outline ki-element-11 fs-2"></i>
+                            <i class="ki-outline ki-home-2 fs-2"></i>
                         </span>
-                        <span class="menu-title">Dashboards</span>
+                        <span class="menu-title">Dashboard</span>
                     </a>
                 </div>
                 <!--end:Menu item-->
+
                 <!--begin:Menu item-->
-                <div data-kt-menu-trigger="click" class="menu-item here show menu-accordion">
-                    <a href="{{ route('superadmin.ticket') }}" class="menu-link">
+                <div class="menu-item {{ request()->routeIs('superadmin.ticket*') ? 'here show' : '' }}">
+                    <a href="{{ route('superadmin.ticket') }}"
+                        class="menu-link {{ request()->routeIs('superadmin.ticket*') ? 'active' : '' }}">
                         <span class="menu-icon">
-                            <i class="ki-outline ki-element-11 fs-2"></i>
+                            <i class="ki-outline ki-tag fs-2"></i>
                         </span>
                         <span class="menu-title">Tickets</span>
+                    </a>
+                </div>
+                <!--end:Menu item-->
+
+                <!--begin:Menu item-->
+                <div class="menu-item {{ request()->routeIs('superadmin.discount*') ? 'here show' : '' }}">
+                    <a href="{{ route('superadmin.discount') }}"
+                        class="menu-link {{ request()->routeIs('superadmin.discount*') ? 'active' : '' }}">
+                        <span class="menu-icon">
+                            <i class="ki-outline ki-percentage fs-2"></i>
+                        </span>
+                        <span class="menu-title">Discounts</span>
                     </a>
                 </div>
                 <!--end:Menu item-->

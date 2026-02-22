@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
-use App\Http\Controllers\Superadmin\DashboardController;
+use App\Http\Controllers\Superadmin\DashboardController as SuperadminDashboardController;
 use App\Http\Controllers\Superadmin\TicketController as SuperadminTicketController;
+use App\Http\Controllers\Superadmin\DiscountController as SuperadminDiscountController;
 
 
 Route::middleware('api.guest')->group(function () {
@@ -21,12 +22,18 @@ Route::middleware('api.auth')->group(function () {
     });
 
     Route::middleware('role:superadmin')->prefix('superadmin')->group(function () {
-        Route::get('/dashboard', [DashboardController::class, 'index'])->name('superadmin.dashboard');
+        Route::get('/dashboard', [SuperadminDashboardController::class, 'index'])->name('superadmin.dashboard');
 
-        // Ticket CRUD - semua di 1 page
+        // Ticket CRUD
         Route::get('/ticket', [SuperadminTicketController::class, 'index'])->name('superadmin.ticket');
         Route::post('/ticket', [SuperadminTicketController::class, 'store'])->name('superadmin.ticket.store');
         Route::put('/ticket/{id}', [SuperadminTicketController::class, 'update'])->name('superadmin.ticket.update');
         Route::delete('/ticket/{id}', [SuperadminTicketController::class, 'destroy'])->name('superadmin.ticket.destroy');
+
+        // Discount CRUD ← tambahan baru
+        Route::get('/discount', [SuperadminDiscountController::class, 'index'])->name('superadmin.discount');
+        Route::post('/discount', [SuperadminDiscountController::class, 'store'])->name('superadmin.discount.store');
+        Route::put('/discount/{id}', [SuperadminDiscountController::class, 'update'])->name('superadmin.discount.update');
+        Route::delete('/discount/{id}', [SuperadminDiscountController::class, 'destroy'])->name('superadmin.discount.destroy');
     });
 });
