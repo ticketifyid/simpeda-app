@@ -592,13 +592,13 @@
                                 <span class="value total">Rp {{ number_format($order['total'], 0, ',', '.') }}</span>
                             </div>
 
-                            <div class="deadline-alert">
+                            {{-- <div class="deadline-alert">
                                 <i class="bi bi-exclamation-triangle-fill"></i>
-                                {{-- <p>
+                                <p>
                                     Selesaikan pembayaran dalam <strong>{{ $order['jatuh_tempo'] }} hari</strong>.
                                     Order yang tidak dibayar akan otomatis dibatalkan.
-                                </p> --}}
-                            </div>
+                                </p>
+                            </div> --}}
                         </div>
 
                     </div>
