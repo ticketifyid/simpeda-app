@@ -5,9 +5,9 @@
     <div class="app-sidebar-logo flex-shrink-0 d-none d-md-flex align-items-center px-8" id="kt_app_sidebar_logo">
         <!--begin::Logo-->
         <a href="index.html">
-            <img alt="Logo" src="assets/media/logos/demo42.svg"
+            <img alt="Logo" src="assets/media/logs/demo42.svg"
                 class="h-25px d-none d-sm-inline app-sidebar-logo-default theme-light-show" />
-            <img alt="Logo" src="assets/media/logos/demo42-dark.svg" class="h-25px h-lg-25px theme-dark-show" />
+            <img alt="Logo" src="assets/media/logs/demo42-dark.svg" class="h-25px h-lg-25px theme-dark-show" />
         </a>
         <!--end::Logo-->
         <!--begin::Aside toggle-->

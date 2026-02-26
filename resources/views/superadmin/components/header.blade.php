@@ -9,7 +9,7 @@
             </div>
             <!--begin::Logo image-->
             <a href="index.html">
-                <img alt="Logo" src="assets/media/logos/demo42-small.svg" class="h-30px" />
+                <img alt="Logo" src="assets/media/logs/demo42-small.svg" class="h-30px" />
             </a>
             <!--end::Logo image-->
         </div>
