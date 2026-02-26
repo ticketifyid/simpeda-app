@@ -6,44 +6,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pesanan Berhasil — Ticketify</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
     <style>
         :root {
-            --primary: #3D3594;
-            --primary-dark: #2e2870;
-            --accent: #F5A623;
-            --accent-2: #E8762C;
-            --light-bg: #F4F3FF;
+            --primary: #D4A574;
+            --primary-dark: #B8935F;
+            --dark: #2C2C2C;
+            --gray-100: #F5F5F5;
+            --gray-200: #E8E8E8;
+            --white: #FFFFFF;
+            --muted: #666666;
         }
 
         * {
-            font-family: 'Plus Jakarta Sans', sans-serif;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            background: var(--light-bg);
-            color: #1a1a2e;
+            font-family: 'Sora', sans-serif;
+            background: var(--gray-100);
+            color: var(--dark);
+            overflow-x: hidden;
         }
 
-        /* ─── Navbar ─── */
-        .navbar {
-            background: var(--primary);
-            padding: 1rem 0;
-            box-shadow: 0 2px 20px rgba(61, 53, 148, .3);
+        /* ── Navbar ── */
+        nav {
+            background: var(--dark);
+            padding: 1.1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        .navbar-brand span {
-            color: var(--accent);
-            font-weight: 800;
-            font-size: 1.4rem;
-            letter-spacing: 1px;
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        /* ─── Hero Success ─── */
+        .logo {
+            font-size: 1.15rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .nav-back {
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+            font-size: .82rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, .5);
+            text-decoration: none;
+            transition: color .2s;
+        }
+
+        .nav-back:hover {
+            color: var(--primary);
+        }
+
+        /* ── Success Hero ── */
         .success-hero {
-            background: linear-gradient(135deg, var(--primary) 0%, #5548c8 100%);
+            background: var(--dark);
+            border-bottom: 3px solid var(--primary);
             padding: 3rem 0 5rem;
             text-align: center;
             position: relative;
@@ -53,29 +83,30 @@
         .success-hero::before {
             content: '';
             position: absolute;
-            width: 400px;
-            height: 400px;
-            background: rgba(255, 255, 255, .05);
+            width: 300px;
+            height: 300px;
+            background: rgba(212, 165, 116, .05);
             border-radius: 50%;
-            top: -100px;
-            right: -100px;
+            top: -80px;
+            right: -80px;
         }
 
         .success-hero::after {
             content: '';
             position: absolute;
-            width: 250px;
-            height: 250px;
-            background: rgba(255, 255, 255, .04);
+            width: 200px;
+            height: 200px;
+            background: rgba(212, 165, 116, .04);
             border-radius: 50%;
-            bottom: -80px;
-            left: -60px;
+            bottom: -60px;
+            left: -40px;
         }
 
         .success-icon {
-            width: 90px;
-            height: 90px;
-            background: rgba(255, 255, 255, .15);
+            width: 80px;
+            height: 80px;
+            background: rgba(212, 165, 116, .15);
+            border: 2px solid rgba(212, 165, 116, .3);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -85,8 +116,8 @@
         }
 
         .success-icon i {
-            font-size: 2.5rem;
-            color: #fff;
+            font-size: 2.2rem;
+            color: var(--primary);
         }
 
         @keyframes popIn {
@@ -102,33 +133,36 @@
         }
 
         .success-hero h1 {
-            color: #fff;
-            font-size: 2rem;
+            color: var(--white);
+            font-size: 1.9rem;
             font-weight: 800;
+            letter-spacing: -.5px;
             margin-bottom: .5rem;
         }
 
         .success-hero p {
-            color: rgba(255, 255, 255, .75);
-            font-size: .95rem;
+            color: rgba(255, 255, 255, .45);
+            font-size: .88rem;
         }
 
-        /* ─── Main Card ─── */
+        /* ── Main Card ── */
         .main-card {
-            background: #fff;
-            border-radius: 24px;
-            box-shadow: 0 8px 40px rgba(61, 53, 148, .12);
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 14px;
+            box-shadow: 0 8px 40px rgba(44, 44, 44, .1);
             margin-top: -3rem;
             position: relative;
             z-index: 10;
             overflow: hidden;
         }
 
-        /* ─── Ticket Stub ─── */
+        /* ── Ticket Stub ── */
         .ticket-stub {
-            padding: 2rem 2.5rem;
-            border-bottom: 2px dashed #e8e8f0;
+            padding: 1.75rem 2rem;
+            border-bottom: 2px dashed var(--gray-200);
             position: relative;
+            background: var(--white);
         }
 
         .ticket-stub::before,
@@ -138,7 +172,7 @@
             bottom: -14px;
             width: 28px;
             height: 28px;
-            background: var(--light-bg);
+            background: var(--gray-100);
             border-radius: 50%;
         }
 
@@ -156,43 +190,44 @@
             gap: .4rem;
             background: #f0fdf4;
             color: #16a34a;
-            font-size: .8rem;
+            font-size: .75rem;
             font-weight: 700;
-            padding: .3rem .8rem;
+            padding: .28rem .75rem;
             border-radius: 50px;
             border: 1px solid #bbf7d0;
-            margin-bottom: 1rem;
+            margin-bottom: .85rem;
         }
 
         .stub-title {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 800;
-            color: #1a1a2e;
+            color: var(--dark);
             margin-bottom: .25rem;
         }
 
         .stub-nobill {
-            font-size: .85rem;
-            color: #888;
+            font-size: .82rem;
+            color: var(--muted);
             font-weight: 500;
         }
 
         .stub-nobill span {
-            color: var(--primary);
+            color: var(--primary-dark);
             font-weight: 700;
-            font-size: 1rem;
+            font-size: .95rem;
             letter-spacing: 1px;
         }
 
-        /* ─── Detail Grid ─── */
+        /* ── Detail Grid ── */
         .detail-body {
-            padding: 2rem 2.5rem;
+            padding: 1.75rem 2rem;
         }
 
         .detail-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1.2rem;
+            margin-bottom: 1.5rem;
         }
 
         @media (max-width: 576px) {
@@ -202,119 +237,33 @@
 
             .ticket-stub,
             .detail-body {
-                padding: 1.5rem;
+                padding: 1.25rem 1.5rem;
             }
         }
 
         .detail-item .label {
-            font-size: .78rem;
-            font-weight: 600;
-            color: #aaa;
+            font-size: .72rem;
+            font-weight: 700;
+            color: var(--muted);
             text-transform: uppercase;
             letter-spacing: .5px;
             margin-bottom: .3rem;
         }
 
         .detail-item .value {
-            font-size: .95rem;
+            font-size: .92rem;
             font-weight: 700;
-            color: #1a1a2e;
+            color: var(--dark);
         }
 
-        /* ─── Payment Section ─── */
-        .payment-section {
-            background: var(--light-bg);
-            border-radius: 16px;
-            padding: 1.5rem;
-            margin-top: 1.5rem;
-        }
-
-        .payment-section-title {
-            font-size: .85rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-transform: uppercase;
-            letter-spacing: .5px;
-            margin-bottom: 1rem;
-        }
-
-        .va-number {
-            background: #fff;
-            border: 2px solid var(--primary);
-            border-radius: 12px;
-            padding: 1rem 1.5rem;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-        }
-
-        .va-number .number {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary);
-            letter-spacing: 2px;
-        }
-
-        .btn-copy {
-            background: var(--primary);
-            color: #fff;
-            border: none;
-            border-radius: 10px;
-            padding: .5rem 1rem;
-            font-size: .85rem;
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: .4rem;
-            transition: all .2s;
-            white-space: nowrap;
-        }
-
-        .btn-copy:hover {
-            background: var(--primary-dark);
-        }
-
-        .payment-info-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: .6rem;
-            font-size: .9rem;
-        }
-
-        .payment-info-row .label {
-            color: #888;
-        }
-
-        .payment-info-row .value {
-            font-weight: 700;
-            color: #1a1a2e;
-        }
-
-        .payment-info-row .value.total {
-            font-size: 1.2rem;
-            color: var(--primary);
-        }
-
-        .payment-info-row .value.discount {
-            color: #16a34a;
-        }
-
-        .payment-divider {
-            border-top: 1px dashed #d1d5e8;
-            margin: .8rem 0;
-        }
-
-        /* ─── Status Badge ─── */
+        /* ── Status Badge ── */
         .status-badge {
             display: inline-flex;
             align-items: center;
             gap: .35rem;
-            padding: .3rem .9rem;
+            padding: .25rem .8rem;
             border-radius: 50px;
-            font-size: .8rem;
+            font-size: .75rem;
             font-weight: 700;
         }
 
@@ -334,16 +283,105 @@
         }
 
         .status-expired {
-            background: #f3f4f6;
-            color: #6b7280;
+            background: var(--gray-100);
+            color: var(--muted);
         }
 
-        /* ─── Deadline Alert ─── */
+        /* ── Payment Section ── */
+        .payment-section {
+            background: var(--gray-100);
+            border: 1px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .payment-section-title {
+            font-size: .72rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .va-number {
+            background: var(--white);
+            border: 2px solid var(--primary);
+            border-radius: 10px;
+            padding: .9rem 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .va-number .number {
+            font-size: 1.35rem;
+            font-weight: 900;
+            color: var(--dark);
+            letter-spacing: 2px;
+        }
+
+        .btn-copy {
+            background: var(--primary);
+            color: var(--dark);
+            border: none;
+            border-radius: 8px;
+            padding: .45rem 1rem;
+            font-family: 'Sora', sans-serif;
+            font-size: .78rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+            transition: all .2s;
+            white-space: nowrap;
+        }
+
+        .btn-copy:hover {
+            background: var(--primary-dark);
+            color: var(--white);
+        }
+
+        .payment-info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: .6rem;
+            font-size: .85rem;
+        }
+
+        .payment-info-row .label {
+            color: var(--muted);
+        }
+
+        .payment-info-row .value {
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .payment-info-row .value.total {
+            font-size: 1.15rem;
+            color: var(--primary-dark);
+        }
+
+        .payment-info-row .value.discount {
+            color: #16a34a;
+        }
+
+        .payment-divider {
+            border-top: 1.5px dashed var(--gray-200);
+            margin: .85rem 0;
+        }
+
+        /* ── Deadline Alert ── */
         .deadline-alert {
             background: #fff7ed;
             border: 1px solid #fed7aa;
-            border-radius: 12px;
-            padding: 1rem 1.2rem;
+            border-radius: 10px;
+            padding: .9rem 1.1rem;
             margin-top: 1rem;
             display: flex;
             align-items: flex-start;
@@ -352,56 +390,59 @@
 
         .deadline-alert i {
             color: #f97316;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             flex-shrink: 0;
             margin-top: .1rem;
         }
 
         .deadline-alert p {
             margin: 0;
-            font-size: .85rem;
+            font-size: .82rem;
             color: #c2410c;
             font-weight: 500;
             line-height: 1.5;
         }
 
-        /* ─── Actions ─── */
+        /* ── Actions ── */
         .actions {
-            padding: 1.5rem 2.5rem 2.5rem;
+            padding: 1.25rem 2rem 2rem;
             display: flex;
-            gap: 1rem;
+            gap: .85rem;
             flex-wrap: wrap;
         }
 
         .btn-home {
-            background: linear-gradient(135deg, var(--primary) 0%, #5548c8 100%);
-            color: #fff;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: var(--dark);
             border: none;
-            border-radius: 50px;
-            padding: .8rem 2rem;
+            border-radius: 8px;
+            padding: .8rem 1.75rem;
+            font-family: 'Sora', sans-serif;
             font-weight: 700;
-            font-size: .95rem;
+            font-size: .88rem;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: .5rem;
-            transition: all .3s;
+            transition: all .2s;
+            box-shadow: 0 4px 12px rgba(212, 165, 116, .3);
         }
 
         .btn-home:hover {
+            color: var(--white);
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(61, 53, 148, .3);
-            color: #fff;
+            box-shadow: 0 8px 24px rgba(212, 165, 116, .4);
         }
 
         .btn-print {
-            background: #fff;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-            border-radius: 50px;
-            padding: .8rem 2rem;
+            background: var(--white);
+            color: var(--dark);
+            border: 1.5px solid var(--gray-200);
+            border-radius: 8px;
+            padding: .8rem 1.75rem;
+            font-family: 'Sora', sans-serif;
             font-weight: 700;
-            font-size: .95rem;
+            font-size: .88rem;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
@@ -410,7 +451,8 @@
         }
 
         .btn-print:hover {
-            background: var(--light-bg);
+            border-color: var(--primary);
+            color: var(--primary-dark);
         }
     </style>
 </head>
@@ -418,10 +460,11 @@
 <body>
 
     {{-- Navbar --}}
-    <nav class="navbar">
-        <div class="container">
-            <a class="navbar-brand d-flex align-items-center gap-2" href="{{ route('landing') }}">
-                <span>TICKETIFY</span>
+    <nav>
+        <div class="container nav-inner">
+            <a href="{{ route('landing') }}" class="logo">TICKETIFY</a>
+            <a href="{{ route('landing') }}" class="nav-back">
+                <i class="bi bi-arrow-left"></i> Kembali
             </a>
         </div>
     </nav>
@@ -506,10 +549,9 @@
                                 <i class="bi bi-credit-card-fill me-1"></i> Informasi Pembayaran
                             </div>
 
-                            {{-- Virtual Account Number --}}
                             <div class="mb-3">
                                 <div class="label"
-                                    style="font-size:.78rem; font-weight:600; color:#aaa; text-transform:uppercase; letter-spacing:.5px; margin-bottom:.5rem;">
+                                    style="font-size:.72rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; margin-bottom:.5rem;">
                                     Nomor Virtual Account
                                 </div>
                                 <div class="va-number">
@@ -520,7 +562,6 @@
                                 </div>
                             </div>
 
-                            {{-- Rincian --}}
                             <div class="payment-info-row">
                                 <span class="label">Harga Tiket</span>
                                 <span class="value">Rp
@@ -547,11 +588,10 @@
                             <div class="payment-divider"></div>
 
                             <div class="payment-info-row">
-                                <span class="label" style="font-weight:700; font-size:1rem;">Total Pembayaran</span>
+                                <span class="label" style="font-weight:700; font-size:.95rem;">Total Pembayaran</span>
                                 <span class="value total">Rp {{ number_format($order['total'], 0, ',', '.') }}</span>
                             </div>
 
-                            {{-- Deadline Alert --}}
                             <div class="deadline-alert">
                                 <i class="bi bi-exclamation-triangle-fill"></i>
                                 <p>
