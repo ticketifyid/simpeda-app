@@ -594,10 +594,10 @@
 
                             <div class="deadline-alert">
                                 <i class="bi bi-exclamation-triangle-fill"></i>
-                                <p>
+                                {{-- <p>
                                     Selesaikan pembayaran dalam <strong>{{ $order['jatuh_tempo'] }} hari</strong>.
                                     Order yang tidak dibayar akan otomatis dibatalkan.
-                                </p>
+                                </p> --}}
                             </div>
                         </div>
 
@@ -608,9 +608,6 @@
                         <a href="{{ route('landing') }}" class="btn-home">
                             <i class="bi bi-house-fill"></i> Kembali ke Beranda
                         </a>
-                        <button class="btn-print" onclick="window.print()">
-                            <i class="bi bi-printer-fill"></i> Cetak
-                        </button>
                     </div>
 
                 </div>
