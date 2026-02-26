@@ -19,6 +19,7 @@ Route::match(['get', 'post'], '/logout', [LoginController::class, 'logout'])->na
 Route::get('/', [LandingController::class, 'index'])->name('landing');
 Route::get('/order/{ticketId}', [LandingController::class, 'orderForm'])->name('landing.order');
 Route::post('/order', [LandingController::class, 'orderStore'])->name('landing.order.store');
+Route::get('/order/{orderId}', [LandingController::class, 'thankYou'])->name('landing.thankyou');
 
 Route::middleware('api.auth')->group(function () {
 

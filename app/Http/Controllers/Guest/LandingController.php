@@ -85,10 +85,23 @@ class LandingController extends Controller
             return back()->withInput()->with('error', $message);
         }
 
-        $order     = $response->json('data');
-        $ticket    = $order['ticket'] ?? null;
-        $discounts = [];
+        $order = $response->json('data');
 
-        return view('guest.pages.landing.thankyou', compact('order', 'ticket', 'discounts'));
+        // Redirect ke halaman thank you dengan order ID
+        return redirect()->route('landing.thankyou', ['orderId' => $order['id']]);
+    }
+
+    public function thankYou(int $orderId)
+    {
+        $response = $this->api->getOrderById($orderId);
+
+        if (!$response->successful()) {
+            return redirect()->route('landing')->with('error', 'Order tidak ditemukan.');
+        }
+
+        $order  = $response->json('data');
+        $ticket = $order['ticket'] ?? null;
+
+        return view('guest.pages.landing.thankyou', compact('order', 'ticket'));
     }
 }

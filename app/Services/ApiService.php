@@ -138,4 +138,8 @@ class ApiService
     {
         return $this->client()->get("/tickets/{$ticketId}/discounts");
     }
+    public function getOrderById(int $orderId)
+    {
+        return $this->client()->get("/orders/{$orderId}");
+    }
 }
