@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pesan Tiket — Ticketify</title>
+    <title>Pesanan Berhasil — Ticketify</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
@@ -41,295 +41,376 @@
             letter-spacing: 1px;
         }
 
-        .navbar-back {
+        /* ─── Hero Success ─── */
+        .success-hero {
+            background: linear-gradient(135deg, var(--primary) 0%, #5548c8 100%);
+            padding: 3rem 0 5rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .success-hero::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, .05);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+        }
+
+        .success-hero::after {
+            content: '';
+            position: absolute;
+            width: 250px;
+            height: 250px;
+            background: rgba(255, 255, 255, .04);
+            border-radius: 50%;
+            bottom: -80px;
+            left: -60px;
+        }
+
+        .success-icon {
+            width: 90px;
+            height: 90px;
+            background: rgba(255, 255, 255, .15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            animation: popIn .5s cubic-bezier(.175, .885, .32, 1.275) both;
+        }
+
+        .success-icon i {
+            font-size: 2.5rem;
+            color: #fff;
+        }
+
+        @keyframes popIn {
+            from {
+                transform: scale(0);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .success-hero h1 {
+            color: #fff;
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: .5rem;
+        }
+
+        .success-hero p {
             color: rgba(255, 255, 255, .75);
-            text-decoration: none;
-            font-size: .9rem;
+            font-size: .95rem;
+        }
+
+        /* ─── Main Card ─── */
+        .main-card {
+            background: #fff;
+            border-radius: 24px;
+            box-shadow: 0 8px 40px rgba(61, 53, 148, .12);
+            margin-top: -3rem;
+            position: relative;
+            z-index: 10;
+            overflow: hidden;
+        }
+
+        /* ─── Ticket Stub ─── */
+        .ticket-stub {
+            padding: 2rem 2.5rem;
+            border-bottom: 2px dashed #e8e8f0;
+            position: relative;
+        }
+
+        .ticket-stub::before,
+        .ticket-stub::after {
+            content: '';
+            position: absolute;
+            bottom: -14px;
+            width: 28px;
+            height: 28px;
+            background: var(--light-bg);
+            border-radius: 50%;
+        }
+
+        .ticket-stub::before {
+            left: -14px;
+        }
+
+        .ticket-stub::after {
+            right: -14px;
+        }
+
+        .stub-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            background: #f0fdf4;
+            color: #16a34a;
+            font-size: .8rem;
+            font-weight: 700;
+            padding: .3rem .8rem;
+            border-radius: 50px;
+            border: 1px solid #bbf7d0;
+            margin-bottom: 1rem;
+        }
+
+        .stub-title {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: #1a1a2e;
+            margin-bottom: .25rem;
+        }
+
+        .stub-nobill {
+            font-size: .85rem;
+            color: #888;
             font-weight: 500;
+        }
+
+        .stub-nobill span {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+
+        /* ─── Detail Grid ─── */
+        .detail-body {
+            padding: 2rem 2.5rem;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.2rem;
+        }
+
+        @media (max-width: 576px) {
+            .detail-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .ticket-stub,
+            .detail-body {
+                padding: 1.5rem;
+            }
+        }
+
+        .detail-item .label {
+            font-size: .78rem;
+            font-weight: 600;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            margin-bottom: .3rem;
+        }
+
+        .detail-item .value {
+            font-size: .95rem;
+            font-weight: 700;
+            color: #1a1a2e;
+        }
+
+        /* ─── Payment Section ─── */
+        .payment-section {
+            background: var(--light-bg);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .payment-section-title {
+            font-size: .85rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            margin-bottom: 1rem;
+        }
+
+        .va-number {
+            background: #fff;
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .va-number .number {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            letter-spacing: 2px;
+        }
+
+        .btn-copy {
+            background: var(--primary);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: .5rem 1rem;
+            font-size: .85rem;
+            font-weight: 700;
+            cursor: pointer;
             display: flex;
             align-items: center;
             gap: .4rem;
-            transition: color .2s;
+            transition: all .2s;
+            white-space: nowrap;
         }
 
-        .navbar-back:hover {
-            color: var(--accent);
+        .btn-copy:hover {
+            background: var(--primary-dark);
         }
 
-        /* ─── Page Header ─── */
-        .page-header {
-            background: linear-gradient(135deg, var(--primary) 0%, #5548c8 100%);
-            padding: 3rem 0;
-        }
-
-        .page-header h1 {
-            color: #fff;
-            font-size: 1.8rem;
-            font-weight: 800;
-        }
-
-        .page-header p {
-            color: rgba(255, 255, 255, .7);
-            font-size: .95rem;
-            margin: 0;
-        }
-
-        /* ─── Ticket Summary Card ─── */
-        .ticket-summary {
-            background: #fff;
-            border-radius: 20px;
-            padding: 1.5rem 2rem;
-            border-left: 5px solid var(--accent);
-            box-shadow: 0 4px 24px rgba(61, 53, 148, .08);
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .ticket-summary-icon {
-            width: 56px;
-            height: 56px;
-            background: var(--light-bg);
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
-
-        .ticket-summary-icon i {
-            color: var(--primary);
-            font-size: 1.5rem;
-        }
-
-        .ticket-summary-name {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: #1a1a2e;
-        }
-
-        .ticket-summary-price {
-            color: var(--primary);
-            font-weight: 800;
-            font-size: 1.2rem;
-        }
-
-        /* ─── Form Card ─── */
-        .form-card {
-            background: #fff;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 4px 24px rgba(61, 53, 148, .08);
-            margin-bottom: 1.5rem;
-        }
-
-        .form-card-title {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            padding-bottom: .75rem;
-            border-bottom: 2px solid var(--light-bg);
-            display: flex;
-            align-items: center;
-            gap: .5rem;
-        }
-
-        .form-label {
-            font-weight: 600;
-            font-size: .875rem;
-            color: #444;
-            margin-bottom: .4rem;
-        }
-
-        .form-control,
-        .form-select {
-            border-radius: 10px;
-            border: 2px solid #e8e8f0;
-            padding: .7rem 1rem;
-            font-size: .95rem;
-            transition: border-color .2s;
-        }
-
-        .form-control:focus,
-        .form-select:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(61, 53, 148, .1);
-        }
-
-        /* ─── Discount Section ─── */
-        .discount-section {
-            background: #fff;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 4px 24px rgba(61, 53, 148, .08);
-            margin-bottom: 1.5rem;
-        }
-
-        .discount-toggle {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-        }
-
-        .discount-toggle-title {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: .5rem;
-        }
-
-        .discount-toggle-badge {
-            background: var(--light-bg);
-            color: var(--primary);
-            font-size: .75rem;
-            font-weight: 600;
-            padding: .2rem .6rem;
-            border-radius: 50px;
-        }
-
-        .discount-body {
-            margin-top: 1.5rem;
-        }
-
-        .discount-applied {
-            background: #f0fdf4;
-            border: 1px solid #86efac;
-            border-radius: 12px;
-            padding: 1rem 1.2rem;
-            margin-top: 1rem;
-            display: none;
-        }
-
-        .discount-applied.show {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .discount-applied-name {
-            font-weight: 700;
-            color: #16a34a;
-        }
-
-        .discount-applied-value {
-            font-size: .85rem;
-            color: #666;
-        }
-
-        .btn-remove-discount {
-            background: none;
-            border: none;
-            color: #ef4444;
-            font-size: .85rem;
-            cursor: pointer;
-            padding: 0;
-        }
-
-        /* ─── Order Summary Sticky ─── */
-        .summary-card {
-            background: #fff;
-            border-radius: 20px;
-            padding: 2rem;
-            box-shadow: 0 4px 24px rgba(61, 53, 148, .08);
-            position: sticky;
-            top: 80px;
-        }
-
-        .summary-title {
-            font-size: 1rem;
-            font-weight: 700;
-            color: #1a1a2e;
-            margin-bottom: 1.5rem;
-            padding-bottom: .75rem;
-            border-bottom: 2px solid var(--light-bg);
-        }
-
-        .summary-row {
+        .payment-info-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: .8rem;
+            margin-bottom: .6rem;
             font-size: .9rem;
         }
 
-        .summary-row .label {
+        .payment-info-row .label {
             color: #888;
         }
 
-        .summary-row .value {
-            font-weight: 600;
+        .payment-info-row .value {
+            font-weight: 700;
             color: #1a1a2e;
         }
 
-        .summary-row.discount .value {
-            color: #16a34a;
-        }
-
-        .summary-divider {
-            border-top: 2px dashed #e8e8f0;
-            margin: 1rem 0;
-        }
-
-        .summary-total {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .summary-total .label {
-            font-weight: 700;
-            font-size: 1rem;
-        }
-
-        .summary-total .value {
-            font-weight: 800;
-            font-size: 1.4rem;
+        .payment-info-row .value.total {
+            font-size: 1.2rem;
             color: var(--primary);
         }
 
-        .btn-submit {
+        .payment-info-row .value.discount {
+            color: #16a34a;
+        }
+
+        .payment-divider {
+            border-top: 1px dashed #d1d5e8;
+            margin: .8rem 0;
+        }
+
+        /* ─── Status Badge ─── */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: .35rem;
+            padding: .3rem .9rem;
+            border-radius: 50px;
+            font-size: .8rem;
+            font-weight: 700;
+        }
+
+        .status-pending {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .status-paid {
+            background: #d1fae5;
+            color: #059669;
+        }
+
+        .status-failed {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+
+        .status-expired {
+            background: #f3f4f6;
+            color: #6b7280;
+        }
+
+        /* ─── Deadline Alert ─── */
+        .deadline-alert {
+            background: #fff7ed;
+            border: 1px solid #fed7aa;
+            border-radius: 12px;
+            padding: 1rem 1.2rem;
+            margin-top: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: .75rem;
+        }
+
+        .deadline-alert i {
+            color: #f97316;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            margin-top: .1rem;
+        }
+
+        .deadline-alert p {
+            margin: 0;
+            font-size: .85rem;
+            color: #c2410c;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        /* ─── Actions ─── */
+        .actions {
+            padding: 1.5rem 2.5rem 2.5rem;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-home {
             background: linear-gradient(135deg, var(--primary) 0%, #5548c8 100%);
             color: #fff;
             border: none;
             border-radius: 50px;
-            padding: .85rem;
+            padding: .8rem 2rem;
             font-weight: 700;
-            font-size: 1rem;
-            width: 100%;
-            margin-top: 1.5rem;
-            transition: all .3s ease;
-            display: flex;
+            font-size: .95rem;
+            text-decoration: none;
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
             gap: .5rem;
+            transition: all .3s;
         }
 
-        .btn-submit:hover {
+        .btn-home:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 24px rgba(61, 53, 148, .3);
             color: #fff;
         }
 
-        .btn-apply-discount {
-            background: var(--accent);
-            color: #fff;
-            border: none;
-            border-radius: 10px;
-            padding: .7rem 1.2rem;
+        .btn-print {
+            background: #fff;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            border-radius: 50px;
+            padding: .8rem 2rem;
             font-weight: 700;
-            font-size: .9rem;
-            white-space: nowrap;
+            font-size: .95rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
             transition: all .2s;
         }
 
-        .btn-apply-discount:hover {
-            background: var(--accent-2);
-            color: #fff;
+        .btn-print:hover {
+            background: var(--light-bg);
         }
     </style>
 </head>
@@ -338,282 +419,176 @@
 
     {{-- Navbar --}}
     <nav class="navbar">
-        <div class="container d-flex align-items-center justify-content-between">
+        <div class="container">
             <a class="navbar-brand d-flex align-items-center gap-2" href="{{ route('landing') }}">
                 <span>TICKETIFY</span>
-            </a>
-            <a href="{{ route('landing') }}" class="navbar-back">
-                <i class="bi bi-arrow-left"></i> Kembali
             </a>
         </div>
     </nav>
 
-    {{-- Page Header --}}
-    <div class="page-header">
+    {{-- Success Hero --}}
+    <div class="success-hero">
         <div class="container">
-            <h1><i class="bi bi-cart-check me-2"></i>Pesan Tiket</h1>
-            <p>Lengkapi data di bawah untuk menyelesaikan pemesanan</p>
+            <div class="success-icon">
+                <i class="bi bi-check-lg"></i>
+            </div>
+            <h1>Pesanan Berhasil!</h1>
+            <p>Selesaikan pembayaran sebelum batas waktu yang ditentukan</p>
         </div>
     </div>
 
-    <div class="container py-5">
-        <div class="row g-4">
+    <div class="container pb-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-7">
 
-            {{-- LEFT: Form --}}
-            <div class="col-lg-8">
+                <div class="main-card">
 
-                {{-- Ticket Summary --}}
-                <div class="ticket-summary">
-                    <div class="ticket-summary-icon">
-                        <i class="bi bi-ticket-perforated"></i>
-                    </div>
-                    <div>
-                        <div class="ticket-summary-name">{{ $ticket['name'] }}</div>
-                        <div class="ticket-summary-price">
-                            Rp {{ number_format($ticket['price'], 0, ',', '.') }}
-                            <span style="font-size:.8rem; font-weight:400; color:#aaa;">/ tiket</span>
+                    {{-- Ticket Stub --}}
+                    <div class="ticket-stub">
+                        <div class="stub-badge">
+                            <i class="bi bi-circle-fill" style="font-size:.5rem;"></i>
+                            {{ strtoupper($order['status']) }}
                         </div>
-                    </div>
-                </div>
-
-                {{-- Form --}}
-                <form action="{{ route('landing.order.store') }}" method="POST" id="orderForm">
-                    @csrf
-                    <input type="hidden" name="ticket_id" value="{{ $ticket['id'] }}">
-                    <input type="hidden" name="discount_id" id="selectedDiscountId" value="">
-
-                    {{-- Data Diri --}}
-                    <div class="form-card">
-                        <div class="form-card-title">
-                            <i class="bi bi-person-fill"></i> Data Pemesan
-                        </div>
-                        <div class="row g-3">
-                            <div class="col-12">
-                                <label class="form-label">Nama Lengkap <span class="text-danger">*</span></label>
-                                <input type="text" name="nama" class="form-control"
-                                    placeholder="Masukkan nama lengkap" value="{{ old('nama') }}" required>
-                                @error('nama')
-                                    <div class="text-danger small mt-1">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="col-sm-6">
-                                <label class="form-label">No. HP / WhatsApp <span class="text-danger">*</span></label>
-                                <input type="text" name="no_hp" class="form-control" placeholder="08xxxxxxxxxx"
-                                    value="{{ old('no_hp') }}" required>
-                                @error('no_hp')
-                                    <div class="text-danger small mt-1">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="col-sm-6">
-                                <label class="form-label">Email <span class="text-danger">*</span></label>
-                                <input type="email" name="email" class="form-control"
-                                    placeholder="email@example.com" value="{{ old('email') }}" required>
-                                @error('email')
-                                    <div class="text-danger small mt-1">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="col-sm-6">
-                                <label class="form-label">Jumlah Tiket <span class="text-danger">*</span></label>
-                                <input type="number" name="qty" id="inputQty" class="form-control" min="1"
-                                    max="{{ $ticket['qty'] }}" value="{{ old('qty', 1) }}" required>
-                                <div class="form-text">Maks. {{ $ticket['qty'] }} tiket</div>
-                                @error('qty')
-                                    <div class="text-danger small mt-1">{{ $message }}</div>
-                                @enderror
-                            </div>
+                        <div class="stub-title">{{ $order['ticket']['name'] ?? ($ticket['name'] ?? 'Tiket') }}</div>
+                        <div class="stub-nobill">
+                            No. Tagihan: <span>{{ $order['no_bill'] }}</span>
                         </div>
                     </div>
 
-                    {{-- Discount --}}
-                    @if (count($discounts) > 0)
-                        <div class="discount-section">
-                            <div class="discount-toggle" onclick="toggleDiscount()">
-                                <div class="discount-toggle-title">
-                                    <i class="bi bi-tag-fill"></i> Punya Kode Diskon?
-                                    <span class="discount-toggle-badge">Opsional</span>
+                    {{-- Detail Body --}}
+                    <div class="detail-body">
+
+                        <div class="detail-grid">
+                            <div class="detail-item">
+                                <div class="label">Nama Pemesan</div>
+                                <div class="value">{{ $order['nama'] }}</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="label">No. HP / WhatsApp</div>
+                                <div class="value">{{ $order['no_hp'] }}</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="label">Email</div>
+                                <div class="value">{{ $order['email'] }}</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="label">Jumlah Tiket</div>
+                                <div class="value">{{ $order['qty'] }} tiket</div>
+                            </div>
+                            <div class="detail-item">
+                                <div class="label">Tanggal Order</div>
+                                <div class="value">
+                                    {{ \Carbon\Carbon::parse($order['created_at'])->locale('id')->isoFormat('D MMMM YYYY, HH:mm') }}
                                 </div>
-                                <i class="bi bi-chevron-down" id="discountChevron"></i>
+                            </div>
+                            <div class="detail-item">
+                                <div class="label">Status</div>
+                                <div class="value">
+                                    @php $status = $order['status']; @endphp
+                                    <span class="status-badge status-{{ $status }}">
+                                        @if ($status === 'pending')
+                                            <i class="bi bi-clock-fill"></i> Menunggu Pembayaran
+                                        @elseif($status === 'paid')
+                                            <i class="bi bi-check-circle-fill"></i> Lunas
+                                        @elseif($status === 'failed')
+                                            <i class="bi bi-x-circle-fill"></i> Gagal
+                                        @else
+                                            <i class="bi bi-dash-circle-fill"></i> Kadaluarsa
+                                        @endif
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{-- Payment Section --}}
+                        <div class="payment-section">
+                            <div class="payment-section-title">
+                                <i class="bi bi-credit-card-fill me-1"></i> Informasi Pembayaran
                             </div>
 
-                            <div class="discount-body" id="discountBody" style="display:none;">
-                                <label class="form-label">Pilih Diskon</label>
-                                <div class="input-group">
-                                    <select class="form-select" id="discountSelect">
-                                        <option value="">-- Pilih diskon --</option>
-                                        @foreach ($discounts as $discount)
-                                            <option value="{{ $discount['id'] }}" data-type="{{ $discount['type'] }}"
-                                                data-price="{{ $discount['price'] }}"
-                                                data-name="{{ $discount['name'] }}">
-                                                {{ $discount['name'] }}
-                                                @if ($discount['type'] === 'percentage')
-                                                    ({{ $discount['price'] }}% off)
-                                                @else
-                                                    (Rp {{ number_format($discount['price'], 0, ',', '.') }} off)
-                                                @endif
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    <button type="button" class="btn-apply-discount" onclick="applyDiscount()">
-                                        Pakai
-                                    </button>
+                            {{-- Virtual Account Number --}}
+                            <div class="mb-3">
+                                <div class="label"
+                                    style="font-size:.78rem; font-weight:600; color:#aaa; text-transform:uppercase; letter-spacing:.5px; margin-bottom:.5rem;">
+                                    Nomor Virtual Account
                                 </div>
-
-                                <div class="discount-applied" id="discountApplied">
-                                    <div>
-                                        <div class="discount-applied-name" id="appliedDiscountName"></div>
-                                        <div class="discount-applied-value" id="appliedDiscountValue"></div>
-                                    </div>
-                                    <button type="button" class="btn-remove-discount" onclick="removeDiscount()">
-                                        <i class="bi bi-x-circle-fill"></i> Hapus
+                                <div class="va-number">
+                                    <span class="number">{{ $order['no_bill'] }}</span>
+                                    <button class="btn-copy" onclick="copyVA()">
+                                        <i class="bi bi-clipboard" id="copyIcon"></i> Salin
                                     </button>
                                 </div>
                             </div>
+
+                            {{-- Rincian --}}
+                            <div class="payment-info-row">
+                                <span class="label">Harga Tiket</span>
+                                <span class="value">Rp
+                                    {{ number_format($order['ticket']['price'] ?? ($ticket['price'] ?? 0), 0, ',', '.') }}</span>
+                            </div>
+                            <div class="payment-info-row">
+                                <span class="label">Jumlah</span>
+                                <span class="value">× {{ $order['qty'] }}</span>
+                            </div>
+
+                            @if (!empty($order['discount']))
+                                <div class="payment-info-row">
+                                    <span class="label">Diskon ({{ $order['discount']['name'] }})</span>
+                                    <span class="value discount">
+                                        @if ($order['discount']['type'] === 'percentage')
+                                            - {{ $order['discount']['price'] }}%
+                                        @else
+                                            - Rp {{ number_format($order['discount']['price'], 0, ',', '.') }}
+                                        @endif
+                                    </span>
+                                </div>
+                            @endif
+
+                            <div class="payment-divider"></div>
+
+                            <div class="payment-info-row">
+                                <span class="label" style="font-weight:700; font-size:1rem;">Total Pembayaran</span>
+                                <span class="value total">Rp {{ number_format($order['total'], 0, ',', '.') }}</span>
+                            </div>
+
+                            {{-- Deadline Alert --}}
+                            <div class="deadline-alert">
+                                <i class="bi bi-exclamation-triangle-fill"></i>
+                                <p>
+                                    Selesaikan pembayaran dalam <strong>{{ $order['jatuh_tempo'] }} hari</strong>.
+                                    Order yang tidak dibayar akan otomatis dibatalkan.
+                                </p>
+                            </div>
                         </div>
-                    @endif
 
-                </form>
-            </div>
-
-            {{-- RIGHT: Summary --}}
-            <div class="col-lg-4">
-                <div class="summary-card">
-                    <div class="summary-title">Ringkasan Pesanan</div>
-
-                    <div class="summary-row">
-                        <span class="label">Tiket</span>
-                        <span class="value">{{ $ticket['name'] }}</span>
-                    </div>
-                    <div class="summary-row">
-                        <span class="label">Harga Satuan</span>
-                        <span class="value" id="summaryPrice">
-                            Rp {{ number_format($ticket['price'], 0, ',', '.') }}
-                        </span>
-                    </div>
-                    <div class="summary-row">
-                        <span class="label">Jumlah</span>
-                        <span class="value" id="summaryQty">1 tiket</span>
                     </div>
 
-                    <div class="summary-divider"></div>
-
-                    <div class="summary-row">
-                        <span class="label">Subtotal</span>
-                        <span class="value" id="summarySubtotal">
-                            Rp {{ number_format($ticket['price'], 0, ',', '.') }}
-                        </span>
-                    </div>
-                    <div class="summary-row discount" id="summaryDiscountRow" style="display:none;">
-                        <span class="label">Diskon</span>
-                        <span class="value" id="summaryDiscount">- Rp 0</span>
+                    {{-- Actions --}}
+                    <div class="actions">
+                        <a href="{{ route('landing') }}" class="btn-home">
+                            <i class="bi bi-house-fill"></i> Kembali ke Beranda
+                        </a>
+                        <button class="btn-print" onclick="window.print()">
+                            <i class="bi bi-printer-fill"></i> Cetak
+                        </button>
                     </div>
 
-                    <div class="summary-divider"></div>
-
-                    <div class="summary-total">
-                        <span class="label">Total</span>
-                        <span class="value" id="summaryTotal">
-                            Rp {{ number_format($ticket['price'], 0, ',', '.') }}
-                        </span>
-                    </div>
-
-                    <button type="submit" form="orderForm" class="btn-submit">
-                        <i class="bi bi-lock-fill"></i> Pesan Sekarang
-                    </button>
-
-                    <p class="text-center text-muted mt-3 mb-0" style="font-size:.8rem;">
-                        <i class="bi bi-shield-check-fill text-success me-1"></i>
-                        Transaksi aman & terenkripsi
-                    </p>
                 </div>
-            </div>
 
+            </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
-        const ticketPrice = {{ $ticket['price'] }};
-        let discountAmount = 0;
-        let appliedDiscount = null;
-
-        // Format Rupiah
-        function formatRp(n) {
-            return 'Rp ' + Math.round(n).toLocaleString('id-ID');
+        function copyVA() {
+            const va = '{{ $order['no_bill'] }}';
+            navigator.clipboard.writeText(va).then(() => {
+                const icon = document.getElementById('copyIcon');
+                icon.className = 'bi bi-clipboard-check';
+                setTimeout(() => icon.className = 'bi bi-clipboard', 2000);
+            });
         }
-
-        // Update summary realtime
-        function updateSummary() {
-            const qty = parseInt(document.getElementById('inputQty').value) || 1;
-            const subtotal = ticketPrice * qty;
-            let total = subtotal;
-
-            // Hitung diskon
-            if (appliedDiscount) {
-                if (appliedDiscount.type === 'percentage') {
-                    discountAmount = subtotal * (appliedDiscount.price / 100);
-                } else {
-                    discountAmount = appliedDiscount.price;
-                }
-                total = Math.max(0, subtotal - discountAmount);
-                document.getElementById('summaryDiscountRow').style.display = 'flex';
-                document.getElementById('summaryDiscount').textContent = '- ' + formatRp(discountAmount);
-            } else {
-                discountAmount = 0;
-                document.getElementById('summaryDiscountRow').style.display = 'none';
-            }
-
-            document.getElementById('summaryQty').textContent = qty + ' tiket';
-            document.getElementById('summarySubtotal').textContent = formatRp(subtotal);
-            document.getElementById('summaryTotal').textContent = formatRp(total);
-        }
-
-        document.getElementById('inputQty').addEventListener('input', updateSummary);
-
-        // Toggle discount panel
-        function toggleDiscount() {
-            const body = document.getElementById('discountBody');
-            const icon = document.getElementById('discountChevron');
-            const open = body.style.display === 'none';
-            body.style.display = open ? 'block' : 'none';
-            icon.className = open ? 'bi bi-chevron-up' : 'bi bi-chevron-down';
-        }
-
-        // Apply discount
-        function applyDiscount() {
-            const select = document.getElementById('discountSelect');
-            const option = select.options[select.selectedIndex];
-            if (!select.value) return alert('Pilih diskon terlebih dahulu.');
-
-            appliedDiscount = {
-                id: select.value,
-                type: option.dataset.type,
-                price: parseFloat(option.dataset.price),
-                name: option.dataset.name,
-            };
-
-            document.getElementById('selectedDiscountId').value = appliedDiscount.id;
-            document.getElementById('appliedDiscountName').textContent = appliedDiscount.name;
-
-            const label = appliedDiscount.type === 'percentage' ?
-                appliedDiscount.price + '% potongan harga' :
-                'Potongan Rp ' + parseFloat(appliedDiscount.price).toLocaleString('id-ID');
-            document.getElementById('appliedDiscountValue').textContent = label;
-
-            document.getElementById('discountApplied').classList.add('show');
-            updateSummary();
-        }
-
-        // Remove discount
-        function removeDiscount() {
-            appliedDiscount = null;
-            document.getElementById('selectedDiscountId').value = '';
-            document.getElementById('discountApplied').classList.remove('show');
-            document.getElementById('discountSelect').value = '';
-            updateSummary();
-        }
-
-        // Init
-        updateSummary();
     </script>
 </body>
 

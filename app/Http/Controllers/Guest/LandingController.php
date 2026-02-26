@@ -37,7 +37,6 @@ class LandingController extends Controller
         $response = $this->api->getPublishedTickets();
         $tickets  = $response->successful() ? $response->json('data') : [];
 
-        // Cari tiket yang dipilih
         $ticket = collect($tickets)->firstWhere('id', $ticketId);
 
         if (!$ticket) {
@@ -45,13 +44,8 @@ class LandingController extends Controller
         }
 
         // Ambil diskon aktif milik tiket ini
-        // Note: endpoint public belum ada, jadi kita filter dari data tiket
-        // atau bisa tambah endpoint public discounts nanti.
-        // Untuk sekarang ambil via admin dengan token null (sesuaikan jika perlu).
-        $discounts = [];
-        // Jika nanti ada endpoint public discounts, uncomment ini:
-        // $discountResponse = $this->api->getPublicDiscounts($ticketId);
-        // $discounts = $discountResponse->successful() ? $discountResponse->json('data') : [];
+        $discountResponse = $this->api->getPublicDiscounts($ticketId);
+        $discounts = $discountResponse->successful() ? $discountResponse->json('data') : [];
 
         return view('guest.pages.landing.order', compact('ticket', 'discounts'));
     }
@@ -77,7 +71,7 @@ class LandingController extends Controller
             'no_hp'       => $request->no_hp,
             'email'       => $request->email,
             'qty'         => $request->qty,
-            'jatuh_tempo' => 1, // hardcode 1 hari, bisa diubah nanti
+            'jatuh_tempo' => 1,
         ];
 
         if ($request->filled('discount_id')) {
@@ -91,8 +85,10 @@ class LandingController extends Controller
             return back()->withInput()->with('error', $message);
         }
 
-        $order = $response->json('data');
+        $order     = $response->json('data');
+        $ticket    = $order['ticket'] ?? null;
+        $discounts = [];
 
-        return view('guest.pages.landing.thankyou', compact('order'));
+        return view('guest.pages.landing.thankyou', compact('order', 'ticket', 'discounts'));
     }
 }

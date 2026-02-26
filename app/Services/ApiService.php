@@ -133,4 +133,9 @@ class ApiService
     {
         return $this->client()->post('/orders', $data);
     }
+    // Discount - Public
+    public function getPublicDiscounts(int $ticketId)
+    {
+        return $this->client()->get("/tickets/{$ticketId}/discounts");
+    }
 }
