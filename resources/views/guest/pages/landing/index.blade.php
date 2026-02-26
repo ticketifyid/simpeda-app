@@ -473,7 +473,7 @@
 
                 <div class="col-lg-7">
                     <h1 class="hero-title">
-                        {{ $event['name'] ?? 'Grand Music Festival' }}<br>
+                        {{ $event['name'] ?? 'Simpeda Festival' }}<br>
                         <span class="highlight">{{ $event['city'] ?? 'Semarang' }}</span>
                     </h1>
                     <div class="meta-strip">
