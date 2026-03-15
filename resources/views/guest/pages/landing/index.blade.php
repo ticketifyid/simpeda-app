@@ -461,7 +461,7 @@
             <a href="{{ route('landing') }}" class="logo">TICKETIFY</a>
             <div class="nav-right">
                 {{-- <span class="nav-date d-none d-md-block">{{ $event['date'] ?? '28 Juni 2025' }}</span> --}}
-                <span class="nav-pill">Cek Tiket Anda</span>
+                {{-- <span class="nav-pill">Cek Tiket Anda</span> --}}
             </div>
         </div>
     </nav>

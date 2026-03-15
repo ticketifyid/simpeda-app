@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <!--
-Author: Keenthemes
-Product Name: MetronicProduct Version: 8.2.5
-Purchase: https://1.envato.market/EA4JP
-Website: http://www.keenthemes.com
-Contact: support@keenthemes.com
-Follow: www.twitter.com/keenthemes
-Dribbble: www.dribbble.com/keenthemes
-Like: www.facebook.com/keenthemes
-License: For each use you must have a valid license purchased only from above link in order to legally use the theme for your project.
+Author: Ticketify
+Product Name: Simpeda
+Product Version: 1.0.0
+Purchase: https://ticketify.id
+Website: https://ticketify.id
+Contact: support@ticketify.id
+Follow: www.twitter.com/ticketify
+Like: www.facebook.com/ticketify
+License: For each use you must have a valid license purchased from Ticketify.
 -->
 <html lang="en">
 <!--begin::Head-->
@@ -39,7 +39,10 @@ License: For each use you must have a valid license purchased only from above li
     <link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
     <!--end::Global Stylesheets Bundle-->
     <script>
-        // Frame-busting to prevent site from being loaded within a frame without permission (click-jacking) if (window.top != window.self) { window.top.location.replace(window.self.location.href); }
+        // Frame-busting to prevent site from being loaded within a frame without permission (click-jacking)
+        if (window.top != window.self) {
+            window.top.location.replace(window.self.location.href);
+        }
     </script>
     @stack('styles')
 </head>
