@@ -9,9 +9,6 @@ use App\Http\Controllers\Superadmin\OrderController as SuperadminOrderController
 use App\Http\Controllers\Superadmin\TicketController as SuperadminTicketController;
 use Illuminate\Support\Facades\Route;
 
-// Bebas akses kapanpun (tanpa operational.hours)
-Route::get('/maintenance', fn() => view('maintenance'))->name('maintenance');
-
 Route::middleware('api.guest')->group(function () {
     Route::get('/login', [LoginController::class, 'index'])->name('login');
     Route::post('/login', [LoginController::class, 'login'])->name('login.post');
@@ -21,6 +18,7 @@ Route::match(['get', 'post'], '/logout', [LoginController::class, 'logout'])->na
 
 // Route publik — kena pembatasan jam operasional
 Route::middleware('operational.hours')->group(function () {
+    Route::get('/maintenance', fn() => view('maintenance'))->name('maintenance'); // pindah ke sini
     Route::get('/', [LandingController::class, 'index'])->name('landing');
     Route::get('/order/{ticketId}', [LandingController::class, 'orderForm'])->name('landing.order');
     Route::post('/order', [LandingController::class, 'orderStore'])->name('landing.order.store');
