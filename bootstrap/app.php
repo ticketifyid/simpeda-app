@@ -15,6 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'api.auth'   => \App\Http\Middleware\ApiAuthenticated::class,
             'api.guest'  => \App\Http\Middleware\RedirectIfAuthenticated::class,
             'role'       => \App\Http\Middleware\CheckRole::class,
+            'operational.hours' => \App\Http\Middleware\CheckOperationalHours::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
