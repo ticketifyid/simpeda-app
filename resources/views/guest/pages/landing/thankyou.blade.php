@@ -488,10 +488,10 @@
 
                     {{-- Ticket Stub --}}
                     <div class="ticket-stub">
-                        <div class="stub-badge">
+                        {{-- <div class="stub-badge">
                             <i class="bi bi-circle-fill" style="font-size:.5rem;"></i>
                             {{ strtoupper($order['status']) }}
-                        </div>
+                        </div> --}}
                         <div class="stub-title">{{ $order['ticket']['name'] ?? ($ticket['name'] ?? 'Tiket') }}</div>
                         <div class="stub-nobill">
                             No. Tagihan: <span>{{ $order['no_bill'] }}</span>
