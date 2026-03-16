@@ -475,8 +475,10 @@
                             </div>
                             <div class="col-sm-6">
                                 <label class="form-label">Jumlah Tiket <span class="text-danger">*</span></label>
+                                {{-- max dibatasi 4 atau stok tersedia, mana yang lebih kecil --}}
                                 <input type="number" name="qty" id="inputQty" class="form-control" min="1"
-                                    max="{{ $ticket['qty'] }}" value="{{ old('qty', 1) }}" required>
+                                    max="{{ min(4, $ticket['qty']) }}" value="{{ old('qty', 1) }}" required>
+                                {{-- <div class="form-text">Maksimal 4 tiket per transaksi</div> --}}
                                 @error('qty')
                                     <div class="text-danger small mt-1">{{ $message }}</div>
                                 @enderror
