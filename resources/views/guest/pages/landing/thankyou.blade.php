@@ -521,7 +521,7 @@
                             <div class="detail-item">
                                 <div class="label">Tanggal Order</div>
                                 <div class="value">
-                                    {{ \Carbon\Carbon::parse($order['created_at'])->locale('id')->isoFormat('D MMMM YYYY, HH:mm') }}
+                                    {{ \Carbon\Carbon::parse($order['created_at'])->setTimezone('Asia/Jakarta')->locale('id')->isoFormat('D MMMM YYYY, HH:mm') }}
                                 </div>
                             </div>
                             <div class="detail-item">
