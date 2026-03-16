@@ -25,9 +25,16 @@ class LandingController extends Controller
 
         $tickets = $response->successful() ? $response->json('data') : [];
 
-        return view('guest.pages.landing.index', compact('tickets'));
-    }
+        $event = [
+            'name'     => 'Saveduit',
+            'city'     => 'Sinergi Nusantara',
+            'date'     => '17 April 2026',
+            'location' => 'Grand Ballroom Alila, Solo',
+            'poster'   => asset('assets/media/poster/poster-1.jpeg'), // ← ini
+        ];
 
+        return view('guest.pages.landing.index', compact('tickets', 'event')); // ← tambah 'event'
+    }
     /**
      * GET /order/{ticketId}
      * Halaman form order — tampilkan detail tiket + list diskon aktif milik tiket tersebut

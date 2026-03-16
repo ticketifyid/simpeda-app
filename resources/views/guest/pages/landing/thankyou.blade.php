@@ -376,31 +376,43 @@
             margin: .85rem 0;
         }
 
-        /* ── Deadline Alert ── */
-        .deadline-alert {
-            background: #fff7ed;
-            border: 1px solid #fed7aa;
+        /* ── Cara Bayar ── */
+        .cara-bayar {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
             border-radius: 10px;
-            padding: .9rem 1.1rem;
-            margin-top: 1rem;
+            padding: 1.1rem 1.25rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .cara-bayar-title {
+            font-size: .72rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: .85rem;
             display: flex;
-            align-items: flex-start;
-            gap: .75rem;
+            align-items: center;
+            gap: .4rem;
         }
 
-        .deadline-alert i {
-            color: #f97316;
-            font-size: 1.1rem;
-            flex-shrink: 0;
-            margin-top: .1rem;
-        }
-
-        .deadline-alert p {
+        .cara-bayar ol {
+            padding-left: 1.25rem;
             margin: 0;
-            font-size: .82rem;
-            color: #c2410c;
-            font-weight: 500;
-            line-height: 1.5;
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+        }
+
+        .cara-bayar ol li {
+            font-size: .8rem;
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .cara-bayar ol li strong {
+            color: var(--dark);
         }
 
         /* ── Actions ── */
@@ -488,13 +500,9 @@
 
                     {{-- Ticket Stub --}}
                     <div class="ticket-stub">
-                        {{-- <div class="stub-badge">
-                            <i class="bi bi-circle-fill" style="font-size:.5rem;"></i>
-                            {{ strtoupper($order['status']) }}
-                        </div> --}}
                         <div class="stub-title">{{ $order['ticket']['name'] ?? ($ticket['name'] ?? 'Tiket') }}</div>
                         <div class="stub-nobill">
-                            No. Tagihan: <span>{{ $order['no_bill'] }}</span>
+                            ID Pesanan : <span>{{ $order['no_bill'] }}</span>
                         </div>
                     </div>
 
@@ -549,10 +557,11 @@
                                 <i class="bi bi-credit-card-fill me-1"></i> Informasi Pembayaran
                             </div>
 
+                            {{-- VA Number --}}
                             <div class="mb-3">
                                 <div class="label"
                                     style="font-size:.72rem; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:.5px; margin-bottom:.5rem;">
-                                    Nomor Virtual Account
+                                    Nomor Virtual Account / ID Billing
                                 </div>
                                 <div class="va-number">
                                     <span class="number">{{ $order['no_bill'] }}</span>
@@ -562,6 +571,28 @@
                                 </div>
                             </div>
 
+                            {{-- Tata Cara Pembayaran --}}
+                            <div class="cara-bayar">
+                                <div class="cara-bayar-title">
+                                    <i class="bi bi-phone-fill"></i> Tata Cara Pembayaran via Bima Mobile
+                                </div>
+                                <ol>
+                                    <li>Login di <strong>Bima Mobile</strong>.</li>
+                                    <li>Pilih menu <strong>Beli Bayar</strong>, lalu pilih menu
+                                        <strong>"Saveduit"</strong>.
+                                    </li>
+                                    <li>Masukkan <strong>ID Billing / Kode Billing</strong> pada kolom yang tersedia.
+                                    </li>
+                                    <li>Pilih <strong>"Lanjut"</strong>.</li>
+                                    <li>Cermati nominal dan rincian permintaan.</li>
+                                    <li>Pilih <strong>"Kirim"</strong>.</li>
+                                    <li>Masukkan <strong>MPIN</strong>.</li>
+                                    <li>Resi transaksi berhasil akan terbit.</li>
+                                    <li>Selesai — lock / hold saldo Anda telah berhasil.</li>
+                                </ol>
+                            </div>
+
+                            {{-- Rincian Harga --}}
                             <div class="payment-info-row">
                                 <span class="label">Harga Tiket</span>
                                 <span class="value">Rp
@@ -592,13 +623,6 @@
                                 <span class="value total">Rp {{ number_format($order['total'], 0, ',', '.') }}</span>
                             </div>
 
-                            {{-- <div class="deadline-alert">
-                                <i class="bi bi-exclamation-triangle-fill"></i>
-                                <p>
-                                    Selesaikan pembayaran dalam <strong>{{ $order['jatuh_tempo'] }} hari</strong>.
-                                    Order yang tidak dibayar akan otomatis dibatalkan.
-                                </p>
-                            </div> --}}
                         </div>
 
                     </div>

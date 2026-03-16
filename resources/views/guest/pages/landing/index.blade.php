@@ -2,6 +2,7 @@
 <html lang="id">
 
 <head>
+    <base href="{{ url('/') }}/" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ticketify</title>
@@ -83,9 +84,8 @@
 
         /* ── Hero ── */
         .hero {
-            padding: 8rem 0 5rem;
+            padding: 8rem 0 3rem;
             background: var(--white);
-            border-bottom: 1px solid var(--gray-200);
         }
 
         .hero-title {
@@ -154,7 +154,7 @@
 
         .poster-box {
             aspect-ratio: 3/4;
-            max-height: 480px;
+            max-height: 600px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -209,6 +209,123 @@
             font-weight: 500;
             letter-spacing: .5px;
             color: rgba(255, 255, 255, .5);
+        }
+
+        /* ── Syarat & Ketentuan ── */
+        .snk-section {
+            background: var(--white);
+            padding: 0 0 6rem;
+        }
+
+        .snk-card {
+            background: var(--white);
+            border: 1px solid var(--gray-200);
+            border-radius: 14px;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        .snk-card-header {
+            display: flex;
+            align-items: center;
+            gap: .85rem;
+            background: var(--dark);
+            padding: 1.1rem 1.5rem;
+        }
+
+        .snk-card-icon {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(212, 165, 116, .15);
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        .snk-card-icon i {
+            color: var(--primary);
+            font-size: .95rem;
+        }
+
+        .snk-card-title {
+            font-size: .95rem;
+            font-weight: 700;
+            letter-spacing: .3px;
+            color: var(--white);
+        }
+
+        .snk-list {
+            padding: 1.5rem 1.75rem 1.5rem 2.5rem;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: .75rem;
+        }
+
+        .snk-list li {
+            font-size: .82rem;
+            line-height: 1.65;
+            color: var(--muted);
+        }
+
+        /* Accordion overrides */
+        .snk-accordion {
+            padding: .75rem 1rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: .5rem;
+        }
+
+        .snk-acc-item {
+            border: 1px solid var(--gray-200) !important;
+            border-radius: 8px !important;
+            overflow: hidden;
+        }
+
+        .snk-acc-btn {
+            font-size: .82rem;
+            font-weight: 700;
+            color: var(--dark) !important;
+            background: var(--gray-100) !important;
+            padding: .75rem 1rem;
+            box-shadow: none !important;
+        }
+
+        .snk-acc-btn:not(.collapsed) {
+            background: var(--dark) !important;
+            color: var(--white) !important;
+        }
+
+        .snk-acc-btn:not(.collapsed) i {
+            color: var(--primary);
+        }
+
+        .snk-acc-btn::after {
+            filter: none;
+        }
+
+        .snk-acc-btn:not(.collapsed)::after {
+            filter: invert(1);
+        }
+
+        .snk-acc-body {
+            padding: 1rem 1.25rem;
+            font-size: .8rem;
+        }
+
+        .snk-acc-body ol {
+            padding-left: 1.25rem;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: .6rem;
+        }
+
+        .snk-acc-body li {
+            color: var(--muted);
+            line-height: 1.65;
         }
 
         /* ── Tickets Section ── */
@@ -473,15 +590,15 @@
 
                 <div class="col-lg-7">
                     <h1 class="hero-title">
-                        {{ $event['name'] ?? 'Simpeda Festival' }}<br>
-                        <span class="highlight">{{ $event['city'] ?? 'Semarang' }}</span>
+                        {{ $event['name'] ?? 'Saveduit' }}<br>
+                        <span class="highlight">{{ $event['city'] ?? 'Sinergi Nusantara' }}</span>
                     </h1>
                     <div class="meta-strip">
                         <span class="meta-chip">
-                            <i class="bi bi-calendar3"></i> {{ $event['date'] ?? '28 Juni 2025' }}
+                            <i class="bi bi-calendar3"></i> {{ $event['date'] ?? '17 April 2026' }}
                         </span>
                         <span class="meta-chip">
-                            <i class="bi bi-geo-alt"></i> {{ $event['location'] ?? 'Simpang Lima, Semarang' }}
+                            <i class="bi bi-geo-alt"></i> {{ $event['location'] ?? 'Grand Ballroom Alila, Solo' }}
                         </span>
                         @isset($event['time'])
                             <span class="meta-chip">
@@ -495,10 +612,11 @@
                 </div>
 
                 <div class="col-lg-5 d-flex justify-content-center justify-content-lg-end">
-                    <div class="poster-wrap" style="max-width:360px; width:100%;">
+                    <div class="poster-wrap" style="max-width:460px; width:100%; padding-bottom: 2rem;">
                         <div class="poster-box">
                             @isset($event['poster'])
-                                <img src="{{ $event['poster'] }}" alt="Poster {{ $event['name'] ?? 'Event' }}">
+                                <img src="{{ asset('assets/media/poster/poster-1.jpeg') }}"
+                                    alt="Poster {{ $event['name'] ?? 'Event' }}">
                             @else
                                 <div class="poster-placeholder">
                                     <i class="bi bi-image-fill"></i>
@@ -514,6 +632,101 @@
                 </div>
 
             </div>
+        </div>
+    </section>
+
+    <section class="snk-section" id="syarat-ketentuan">
+        <div class="container">
+
+            <div class="section-top">
+                <div>
+                    <div class="section-eyebrow">Baca Sebelum Membeli</div>
+                    <div class="section-title">Syarat &amp; Ketentuan</div>
+                </div>
+            </div>
+
+            <div class="snk-card">
+                <div class="snk-card-header">
+                    <div class="snk-card-icon"><i class="bi bi-file-earmark-text-fill"></i></div>
+                    <span class="snk-card-title">Nasabah dengan ini telah membaca, memahami, mengerti dan secara sadar
+                        menyetujui syarat dan ketentuan program sebagai berikut :</span>
+                </div>
+
+                <div
+                    style="
+                max-height: 320px;
+                overflow-y: auto;
+                padding: 1.5rem 1.75rem 1.5rem 2.5rem;
+                scrollbar-width: thin;
+                scrollbar-color: var(--primary) var(--gray-100);
+            ">
+                    <ol style="margin:0; display:flex; flex-direction:column; gap:.75rem;">
+                        <li style="font-size:.82rem; line-height:1.65; color:var(--muted);">Invitation akan didapatkan
+                            dalam bentuk softcopy.</li>
+                        <li style="font-size:.82rem; line-height:1.65; color:var(--muted);">Tukarkan invitation dengan
+                            akses masuk di area acara.</li>
+                        <li style="font-size:.82rem; line-height:1.65; color:var(--muted);">Hold dana/ lock dana/ kunci
+                            saldo selama <strong>12 (dua belas) bulan</strong>.</li>
+                        <li style="font-size:.82rem; line-height:1.65; color:var(--muted);">Registrasi hanya dapat
+                            dilakukan melalui website <strong>Ticketify.id</strong> dan hold dana hanya dapat dilakukan
+                            melalui aplikasi Bima Mobile Bank Jateng pada menu saveduit.</li>
+                        <li style="font-size:.82rem; line-height:1.65; color:var(--muted);">Peserta wajib menyelesaikan
+                            transaksi Saveduit melalui aplikasi Bima Mobile Bank Jateng, serta secara sadar melakukan
+                            transaksi Saveduit/ lock up/ hold saldo pada rekening Bank Jateng.</li>
+                        <li style="font-size:.82rem; line-height:1.65; color:var(--muted);">Saldo yang telah dikunci
+                            hanya bisa di cek datanya melalui Customer Service di kantor Bank Jateng terdekat.</li>
+                        <li style="font-size:.82rem; line-height:1.65; color:var(--muted);">Dengan melakukan transaksi
+                            di channel Bank Jateng (Bima Mobile) maka nasabah secara sadar memerintahkan bank untuk
+                            mengunci saldo dengan nominal saveduit pada rekening pribadi sesuai ketentuan di dalam
+                            rekening dengan jangka waktu yang diperjanjikan.</li>
+                        <li style="font-size:.82rem; line-height:1.65; color:var(--muted);">Saldo yang dikunci tidak
+                            dapat dipindahkan ataupun ditarik sebelum jangka waktu kunci berakhir. Saldo yang terkunci
+                            akan dikenakan biaya administrasi tabungan sesuai syarat dan ketentuan produk layanan.</li>
+                        <li style="font-size:.82rem; line-height:1.65; color:var(--muted);">Apabila sebelum berakhirnya
+                            jatuh tempo penguncian/ blokir dana pemilik rekening melakukan penarikan dana atau pencairan
+                            dana yang diblokir baik sebagian atau seluruhnya, maka yang bersangkutan bersedia dikenakan
+                            <strong>denda sebesar Rp 1.000.000,-/ invitation</strong>. Bank Jateng untuk melakukan
+                            pendebetan atas rekening tersebut diatas sebesar denda yang ditetapkan Bank Jateng.
+                        </li>
+                        <li style="font-size:.82rem; line-height:1.65; color:var(--muted);">Nasabah dengan sadar
+                            mengenali nomor rekening yang terblokir sebagai rekening blokir/ penguncian saldo tabungan,
+                            dan tidak dapat menggugat Bank Jateng atas transaksi blokir yang telah dilaksanakan melalui
+                            Bima Mobile.</li>
+                        <li style="font-size:.82rem; line-height:1.65; color:var(--muted);">Nasabah yang telah
+                            menyelesaikan transaksi lock/ hold maka telah menyetujui syarat dan ketentuan program.</li>
+                        <li style="font-size:.82rem; line-height:1.65; color:var(--muted);">Untuk keterangan lebih
+                            lanjut dan/ atau masalah pengaduan dapat menghubungi call center Bank Jateng di nomor
+                            <strong>14066</strong>.
+                        </li>
+                        <li style="font-size:.82rem; line-height:1.65; color:var(--muted);">Bilamana penyelenggara acara
+                            tidak dapat dilaksanakan dikarenakan adanya ketentuan Pemerintah atau dikarenakan kondisi
+                            <em>force majeur</em> belum berakhir dan apabila pihak Bank Jateng setuju untuk melakukan
+                            refund semua biaya pendaftaran penonton yang sudah didapat, maka pihak Bank Jateng akan
+                            membebaskan denda dan jangka waktu blokir bagi pemilik rekening yang sudah melakukan lock/
+                            hold.
+                        </li>
+                        <li style="font-size:.82rem; line-height:1.65; color:var(--muted);">Jaga kerahasiaan data dan
+                            penggunaan invitation yang sudah diterima nasabah menjadi sepenuhnya tanggung jawab nasabah.
+                        </li>
+                        <li style="font-size:.82rem; line-height:1.65; color:var(--muted);">Kuota terbatas dan selama
+                            persediaan masih ada.</li>
+                    </ol>
+                </div>
+
+                {{-- Fade & hint scroll --}}
+                <div
+                    style="
+                text-align:center;
+                padding: .6rem 1rem .9rem;
+                font-size:.72rem;
+                color:var(--muted);
+                border-top: 1px solid var(--gray-200);
+            ">
+                    <i class="bi bi-chevron-double-down" style="color:var(--primary);"></i>
+                    Gulir untuk membaca selengkapnya
+                </div>
+            </div>
+
         </div>
     </section>
 
@@ -575,7 +788,7 @@
     {{-- Footer --}}
     <footer>
         <div class="container footer-inner">
-            <p><strong>Ticketify</strong> — Platform Tiket Event</p>
+            <p><strong>Ticketify</strong></p>
             <p>&copy; {{ date('Y') }} All rights reserved.</p>
         </div>
     </footer>

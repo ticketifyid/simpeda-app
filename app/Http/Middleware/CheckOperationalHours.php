@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class CheckOperationalHours
 {
-    protected int $openHour  = 22;
+    protected int $openHour  = 14;
     protected int $closeHour = 2;
 
     public function handle(Request $request, Closure $next)
