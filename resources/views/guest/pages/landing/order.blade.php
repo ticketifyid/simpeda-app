@@ -572,14 +572,14 @@
             {{-- RIGHT: Summary --}}
             <div class="col-lg-4">
                 <div class="summary-card">
-                    <div class="summary-title">Ringkasan Pesanan</div>
+                    <div class="summary-title">Ringkasan Invitation</div>
 
                     <div class="summary-row">
                         <span class="lbl">Invitation</span>
                         <span class="val">{{ $ticket['name'] }}</span>
                     </div>
                     <div class="summary-row">
-                        <span class="lbl">Harga Satuan</span>
+                        <span class="lbl">Nominal Hold</span>
                         <span class="val" id="summaryPrice">
                             Rp {{ number_format($ticket['price'], 0, ',', '.') }}
                         </span>
@@ -612,12 +612,12 @@
                     </div>
 
                     <button type="submit" form="orderForm" class="btn-submit">
-                        <i class="bi bi-lock-fill"></i> Pesan Sekarang
+                        <i class="bi bi-lock-fill"></i> Dapatkan Invitation Sekarang
                     </button>
 
-                    <div class="secure-note">
+                    {{-- <div class="secure-note">
                         <i class="bi bi-shield-check-fill"></i> Transaksi aman & terenkripsi
-                    </div>
+                    </div> --}}
                 </div>
             </div>
 
