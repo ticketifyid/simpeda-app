@@ -78,7 +78,7 @@ class LandingController extends Controller
             'no_hp'       => $request->no_hp,
             'email'       => $request->email,
             'qty'         => $request->qty,
-            'jatuh_tempo' => 1,
+            'jatuh_tempo' => 365,
         ];
 
         if ($request->filled('discount_id')) {
