@@ -607,7 +607,7 @@
                         @endisset
                     </div>
                     <a href="#tickets" class="btn-main">
-                        <i class="bi bi-ticket-perforated-fill"></i> Beli Tiket Sekarang
+                        <i class="bi bi-ticket-perforated-fill"></i> Dapatkan Invitation Sekarang
                     </a>
                 </div>
 
@@ -626,7 +626,7 @@
                         </div>
                         <div class="poster-badge">
                             <div class="poster-badge-num">{{ count($tickets) }}</div>
-                            <div class="poster-badge-text">Kategori Tiket</div>
+                            <div class="poster-badge-text">Kategori Invitation</div>
                         </div>
                     </div>
                 </div>
@@ -736,14 +736,14 @@
 
             <div class="section-top">
                 <div>
-                    <div class="section-eyebrow">Pilih Tiketmu</div>
-                    <div class="section-title">Kategori Tiket</div>
+                    <div class="section-eyebrow">Pilih Invitationmu</div>
+                    <div class="section-title">Kategori Invitation</div>
                 </div>
-                <div class="section-sub">{{ count($tickets) }} jenis tiket tersedia</div>
+                <div class="section-sub">{{ count($tickets) }} jenis invitation tersedia</div>
             </div>
 
             @if (empty($tickets))
-                <div class="empty">Belum ada tiket tersedia.</div>
+                <div class="empty">Belum ada invitation tersedia.</div>
             @else
                 <div class="row g-4">
                     @foreach ($tickets as $ticket)
@@ -770,9 +770,9 @@
                                     <div class="tcard-price">
                                         Rp {{ number_format($ticket['price'], 0, ',', '.') }}
                                     </div>
-                                    <div class="tcard-per">per tiket</div>
+                                    <div class="tcard-per">per invitation</div>
                                     <a href="{{ route('landing.order', $ticket['id']) }}" class="btn-pick">
-                                        Pilih Tiket <i class="bi bi-arrow-right"></i>
+                                        Pilih Invitation <i class="bi bi-arrow-right"></i>
                                     </a>
                                 </div>
 

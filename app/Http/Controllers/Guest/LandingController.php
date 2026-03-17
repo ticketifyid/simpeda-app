@@ -30,7 +30,7 @@ class LandingController extends Controller
             'city'     => 'Sinergi Nusantara',
             'date'     => '17 April 2026',
             'location' => 'Grand Ballroom Alila, Solo',
-            'poster'   => asset('assets/media/poster/poster-1.jpeg'), // ← ini
+            'poster'   => asset('assets/media/poster/poster-2.jpeg'), // ← ini
         ];
 
         return view('guest.pages.landing.index', compact('tickets', 'event')); // ← tambah 'event'

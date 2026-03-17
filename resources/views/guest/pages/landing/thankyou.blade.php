@@ -500,7 +500,8 @@
 
                     {{-- Ticket Stub --}}
                     <div class="ticket-stub">
-                        <div class="stub-title">{{ $order['ticket']['name'] ?? ($ticket['name'] ?? 'Tiket') }}</div>
+                        <div class="stub-title">{{ $order['ticket']['name'] ?? ($ticket['name'] ?? 'Invitation') }}
+                        </div>
                         <div class="stub-nobill">
                             ID Pesanan : <span>{{ $order['no_bill'] }}</span>
                         </div>
@@ -523,8 +524,8 @@
                                 <div class="value">{{ $order['email'] }}</div>
                             </div>
                             <div class="detail-item">
-                                <div class="label">Jumlah Tiket</div>
-                                <div class="value">{{ $order['qty'] }} tiket</div>
+                                <div class="label">Jumlah Invitation</div>
+                                <div class="value">{{ $order['qty'] }} invitation</div>
                             </div>
                             <div class="detail-item">
                                 <div class="label">Tanggal Order</div>
@@ -594,7 +595,7 @@
 
                             {{-- Rincian Harga --}}
                             <div class="payment-info-row">
-                                <span class="label">Harga Tiket</span>
+                                <span class="label">Harga Invitation</span>
                                 <span class="value">Rp
                                     {{ number_format($order['ticket']['price'] ?? ($ticket['price'] ?? 0), 0, ',', '.') }}</span>
                             </div>

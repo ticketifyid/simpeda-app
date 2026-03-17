@@ -412,7 +412,7 @@
     {{-- Page Header --}}
     <div class="page-header">
         <div class="container">
-            <h1><i class="bi bi-cart-check me-2"></i>Pesan Tiket</h1>
+            <h1><i class="bi bi-cart-check me-2"></i>Pemesanan</h1>
             <p>Lengkapi data di bawah untuk menyelesaikan pemesanan</p>
         </div>
     </div>
@@ -432,7 +432,7 @@
                         <div class="ticket-banner-name">{{ $ticket['name'] }}</div>
                         <div class="ticket-banner-price">
                             Rp {{ number_format($ticket['price'], 0, ',', '.') }}
-                            <small>/ tiket</small>
+                            <small>/ invitation</small>
                         </div>
                     </div>
                 </div>
@@ -474,7 +474,7 @@
                                 @enderror
                             </div>
                             <div class="col-sm-6">
-                                <label class="form-label">Jumlah Tiket <span class="text-danger">*</span></label>
+                                <label class="form-label">Jumlah Invitation <span class="text-danger">*</span></label>
                                 {{-- max dibatasi 4 atau stok tersedia, mana yang lebih kecil --}}
                                 <input type="number" name="qty" id="inputQty" class="form-control" min="1"
                                     max="{{ min(4, $ticket['qty']) }}" value="{{ old('qty', 1) }}" required>
@@ -528,7 +528,7 @@
                     <div class="summary-title">Ringkasan Pesanan</div>
 
                     <div class="summary-row">
-                        <span class="lbl">Tiket</span>
+                        <span class="lbl">Invitation</span>
                         <span class="val">{{ $ticket['name'] }}</span>
                     </div>
                     <div class="summary-row">
@@ -539,7 +539,7 @@
                     </div>
                     <div class="summary-row">
                         <span class="lbl">Jumlah</span>
-                        <span class="val" id="summaryQty">1 tiket</span>
+                        <span class="val" id="summaryQty">1 invitation</span>
                     </div>
 
                     <div class="summary-divider"></div>
