@@ -17,13 +17,13 @@ Route::middleware('api.guest')->group(function () {
 Route::match(['get', 'post'], '/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Route publik — kena pembatasan jam operasional
-Route::middleware('operational.hours')->group(function () {
-    Route::get('/maintenance', fn() => view('maintenance'))->name('maintenance'); // pindah ke sini
-    Route::get('/', [LandingController::class, 'index'])->name('landing');
-    Route::get('/order/{ticketId}', [LandingController::class, 'orderForm'])->name('landing.order');
-    Route::post('/order', [LandingController::class, 'orderStore'])->name('landing.order.store');
-    Route::get('/order/{orderId}/success', [LandingController::class, 'thankYou'])->name('landing.thankyou');
-});
+// Route::middleware('operational.hours')->group(function () {
+Route::get('/maintenance', fn() => view('maintenance'))->name('maintenance'); // pindah ke sini
+Route::get('/', [LandingController::class, 'index'])->name('landing');
+Route::get('/order/{ticketId}', [LandingController::class, 'orderForm'])->name('landing.order');
+Route::post('/order', [LandingController::class, 'orderStore'])->name('landing.order.store');
+Route::get('/order/{orderId}/success', [LandingController::class, 'thankYou'])->name('landing.thankyou');
+// });
 
 // Route admin/superadmin — bebas akses kapanpun
 Route::middleware('api.auth')->group(function () {

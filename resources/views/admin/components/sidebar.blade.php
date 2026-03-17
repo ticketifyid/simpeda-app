@@ -66,8 +66,7 @@
                 <!--begin::Name-->
                 <div class="d-flex flex-column align-items-start justify-content-center ms-3">
                     <span class="text-gray-500 fs-8 fw-semibold">Hello</span>
-                    <a href="#" class="text-gray-800 fs-7 fw-bold text-hover-primary">Jeroen
-                        van Basten</a>
+                    <a href="#" class="text-gray-800 fs-7 fw-bold text-hover-primary">Admin Simpeda</a>
                 </div>
                 <!--end::Name-->
             </div>
@@ -85,10 +84,11 @@
                         <!--end::Avatar-->
                         <!--begin::Username-->
                         <div class="d-flex flex-column">
-                            <div class="fw-bold d-flex align-items-center fs-5">Eugenia
-                                <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Pro</span>
+                            <div class="fw-bold d-flex align-items-center fs-5">Admin Simpeda
+                                {{-- <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Pro</span> --}}
                             </div>
-                            <a href="#" class="fw-semibold text-muted text-hover-primary fs-7">eugenia@kt.com</a>
+                            <a href="#"
+                                class="fw-semibold text-muted text-hover-primary fs-7">admin@simpeda.com</a>
                         </div>
                         <!--end::Username-->
                     </div>
