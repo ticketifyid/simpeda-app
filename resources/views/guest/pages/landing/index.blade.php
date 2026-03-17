@@ -615,7 +615,7 @@
                     <div class="poster-wrap" style="max-width:460px; width:100%; padding-bottom: 2rem;">
                         <div class="poster-box">
                             @isset($event['poster'])
-                                <img src="{{ asset('assets/media/poster/poster-1.jpeg') }}"
+                                <img src="{{ asset('assets/media/poster/poster-2.jpeg') }}"
                                     alt="Poster {{ $event['name'] ?? 'Event' }}">
                             @else
                                 <div class="poster-placeholder">
