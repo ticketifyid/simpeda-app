@@ -652,7 +652,7 @@
                 document.getElementById('summaryDiscountRow').style.display = 'none';
             }
 
-            document.getElementById('summaryQty').textContent = qty + ' tiket';
+            document.getElementById('summaryQty').textContent = qty + ' Invitation';
             document.getElementById('summarySubtotal').textContent = formatRp(subtotal);
             document.getElementById('summaryTotal').textContent = formatRp(total);
         }
