@@ -394,6 +394,36 @@
         .secure-note i {
             color: #16a34a;
         }
+
+        /* ── Flash Alert ── */
+        .flash-alert {
+            border-radius: 10px;
+            padding: .9rem 1.1rem;
+            font-size: .85rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+            margin-bottom: 1.25rem;
+            border: none;
+        }
+
+        .flash-alert.error {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            color: #b91c1c;
+        }
+
+        .flash-alert.success {
+            background: #f0fdf4;
+            border-left: 4px solid #22c55e;
+            color: #15803d;
+        }
+
+        .flash-alert i {
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
     </style>
 </head>
 
@@ -418,6 +448,23 @@
     </div>
 
     <div class="container py-4">
+
+        {{-- Flash Error --}}
+        @if (session('error'))
+            <div class="flash-alert error" role="alert">
+                <i class="bi bi-exclamation-circle-fill"></i>
+                {{ session('error') }}
+            </div>
+        @endif
+
+        {{-- Flash Success --}}
+        @if (session('success'))
+            <div class="flash-alert success" role="alert">
+                <i class="bi bi-check-circle-fill"></i>
+                {{ session('success') }}
+            </div>
+        @endif
+
         <div class="row g-4">
 
             {{-- LEFT: Form --}}
@@ -655,6 +702,17 @@
         }
 
         updateSummary();
+
+        // Auto-scroll ke flash alert jika ada
+        window.addEventListener('DOMContentLoaded', () => {
+            const flash = document.querySelector('.flash-alert');
+            if (flash) {
+                flash.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'center'
+                });
+            }
+        });
     </script>
 </body>
 
