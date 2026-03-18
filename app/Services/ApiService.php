@@ -142,4 +142,8 @@ class ApiService
     {
         return $this->client()->get("/orders/{$orderId}");
     }
+    public function exportOrders(string $token, array $filters = [])
+    {
+        return $this->client($token)->get('/admin/orders/export', $filters);
+    }
 }

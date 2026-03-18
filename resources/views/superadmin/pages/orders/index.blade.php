@@ -84,6 +84,11 @@
                                 <option value="expired">Expired</option>
                             </select>
                         </div>
+                        {{-- Export Button --}}
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modalExport">
+                            <i class="ki-outline ki-exit-down fs-2"></i>
+                            Export Excel
+                        </button>
                     </div>
                 </div>
                 <!--end::Card header-->
@@ -243,6 +248,42 @@
                         <div class="modal-footer">
                             <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
                             <button type="submit" class="btn btn-danger">Delete</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        {{-- Modal Export --}}
+        <div class="modal fade" id="modalExport" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <form method="GET" action="{{ route('superadmin.order.export') }}">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Export Orders</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label class="form-label">
+                                    Status
+                                    <span class="text-muted fs-7">(opsional, kosongkan untuk semua)</span>
+                                </label>
+                                <select name="status" class="form-select">
+                                    <option value="">Semua Status</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="paid">Paid</option>
+                                    <option value="failed">Failed</option>
+                                    <option value="expired">Expired</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-success">
+                                <i class="ki-outline ki-exit-down fs-2"></i>
+                                Download Excel
+                            </button>
                         </div>
                     </form>
                 </div>

@@ -48,6 +48,7 @@ Route::middleware('api.auth')->group(function () {
         Route::delete('/discount/{id}', [SuperadminDiscountController::class, 'destroy'])->name('superadmin.discount.destroy');
 
         // Order
+        Route::get('/superadmin/orders/export', [SuperadminOrderController::class, 'export'])->name('superadmin.order.export');
         Route::get('/order', [SuperadminOrderController::class, 'index'])->name('superadmin.order');
         Route::put('/order/{id}/status', [SuperadminOrderController::class, 'updateStatus'])->name('superadmin.order.updateStatus');
         Route::delete('/order/{id}', [SuperadminOrderController::class, 'destroy'])->name('superadmin.order.destroy');

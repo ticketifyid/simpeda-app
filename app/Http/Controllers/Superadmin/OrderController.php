@@ -62,4 +62,24 @@ class OrderController extends Controller
         return redirect()->route('superadmin.order')
             ->with('success', 'Order berhasil dihapus.');
     }
+    public function export(Request $request)
+    {
+        $request->validate([
+            'status' => 'nullable|in:pending,paid,failed,expired',
+        ]);
+
+        $filters  = array_filter($request->only(['status']));
+        $response = $this->api->exportOrders(session('api_token'), $filters);
+
+        if (!$response->successful()) {
+            return back()->with('error', 'Gagal mengexport data order.');
+        }
+
+        $filename = 'orders-' . now()->format('Ymd-His') . '.xlsx';
+
+        return response($response->body(), 200, [
+            'Content-Type'        => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            'Content-Disposition' => 'attachment; filename="' . $filename . '"',
+        ]);
+    }
 }
