@@ -52,8 +52,7 @@
             {{-- ===== Cards Per Tiket ===== --}}
             @forelse($summary as $item)
                 @php
-                    $totalSold = $item['paid'] + $item['pending'] + $item['expired'];
-                    $totalKuota = $totalSold + $item['sisa_kuota'];
+                    $totalKuota = $item['paid'] + $item['pending'] + $item['sisa_kuota'];
                     $pctPaid = $totalKuota > 0 ? round(($item['paid'] / $totalKuota) * 100) : 0;
                     $pctPending = $totalKuota > 0 ? round(($item['pending'] / $totalKuota) * 100) : 0;
                     $pctExpired = $totalKuota > 0 ? round(($item['expired'] / $totalKuota) * 100) : 0;
