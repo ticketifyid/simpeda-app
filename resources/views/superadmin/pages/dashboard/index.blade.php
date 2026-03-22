@@ -27,10 +27,10 @@
     <div id="kt_app_content" class="app-content flex-column-fluid">
         <div id="kt_app_content_container" class="app-container container-xxl">
 
-            {{-- Alert error jika gagal load --}}
+            {{-- Alert error --}}
             @if (isset($error))
-                <div class="alert alert-danger d-flex align-items-center mb-6">
-                    <i class="ki-outline ki-shield-cross fs-2hx text-danger me-4"></i>
+                <div class="alert alert-danger d-flex align-items-center p-5 mb-10">
+                    <i class="ki-outline ki-information-5 fs-2hx text-danger me-4"></i>
                     <div class="d-flex flex-column">
                         <h4 class="mb-1 text-danger">Gagal memuat data</h4>
                         <span>{{ $error }}</span>
@@ -38,164 +38,180 @@
                 </div>
             @endif
 
-            {{-- ===== SECTION: Ringkasan Per Tiket ===== --}}
-            <div class="mb-6">
-                <h2 class="fw-bold text-gray-800 fs-4 mb-1">Ringkasan Pemesanan</h2>
-                <span class="text-gray-500 fs-6">Status order dan sisa kuota per jenis tiket</span>
+            {{-- ===== Section Header ===== --}}
+            <div class="d-flex align-items-center justify-content-between mb-7">
+                <div>
+                    <h2 class="fw-bold text-gray-900 fs-2 mb-1">Ringkasan Pemesanan</h2>
+                    <span class="text-gray-500 fw-semibold fs-6">Status order dan sisa kuota per jenis tiket</span>
+                </div>
+                <span class="badge badge-light-primary fs-7 fw-bold px-4 py-3">
+                    {{ count($summary) }} Jenis Tiket
+                </span>
             </div>
 
+            {{-- ===== Cards Per Tiket ===== --}}
             @forelse($summary as $item)
-                <div class="card mb-5 shadow-sm border-0">
+                @php
+                    $totalSold = $item['paid'] + $item['pending'] + $item['expired'];
+                    $totalKuota = $totalSold + $item['sisa_kuota'];
+                    $pctPaid = $totalKuota > 0 ? round(($item['paid'] / $totalKuota) * 100) : 0;
+                    $pctPending = $totalKuota > 0 ? round(($item['pending'] / $totalKuota) * 100) : 0;
+                    $pctExpired = $totalKuota > 0 ? round(($item['expired'] / $totalKuota) * 100) : 0;
+                    $pctSisa = 100 - $pctPaid - $pctPending - $pctExpired;
+                @endphp
+
+                <div class="card card-flush mb-7">
                     <!--begin::Card header-->
-                    <div class="card-header border-0 pt-6 pb-0">
-                        <div class="d-flex align-items-center gap-3">
-                            <div class="symbol symbol-45px">
-                                <span class="symbol-label bg-light-primary">
-                                    <i class="ki-outline ki-ticket fs-2 text-primary"></i>
-                                </span>
-                            </div>
-                            <div>
-                                <h3 class="card-title fw-bold text-gray-900 mb-0 fs-5">
-                                    {{ $item['ticket_name'] }}
-                                </h3>
-                                <span class="text-gray-500 fs-7">ID Tiket: #{{ $item['ticket_id'] }}</span>
+                    <div class="card-header pt-7">
+                        <div class="card-title">
+                            <div class="d-flex align-items-center gap-4">
+                                <div class="symbol symbol-50px">
+                                    <div class="symbol-label bg-light-primary">
+                                        <i class="ki-outline ki-ticket fs-1 text-primary"></i>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <span class="text-gray-900 fw-bold fs-4">{{ $item['ticket_name'] }}</span>
+                                    <span class="text-muted fw-semibold fs-7 mt-1">
+                                        <span class="badge badge-light fw-semibold me-1">ID #{{ $item['ticket_id'] }}</span>
+                                        Total {{ number_format($totalKuota) }} tiket tersedia
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <!--end::Card header-->
 
                     <!--begin::Card body-->
-                    <div class="card-body pt-4">
-                        <div class="row g-4">
+                    <div class="card-body pt-5 pb-7">
+
+                        <!--begin::Stats row-->
+                        <div class="row g-5 mb-7">
 
                             {{-- Sisa Kuota --}}
-                            <div class="col-6 col-md-3">
-                                <div class="bg-light-primary rounded-3 p-4 text-center h-100">
-                                    <div class="d-flex justify-content-center mb-2">
-                                        <span class="badge badge-circle badge-primary p-3">
-                                            <i class="ki-outline ki-abstract-26 fs-3 text-white"></i>
+                            <div class="col-sm-6 col-xl-3">
+                                <div class="border border-dashed border-primary rounded min-w-125px py-3 px-4">
+                                    <div class="d-flex align-items-center mb-1">
+                                        <i class="ki-outline ki-abstract-26 fs-3 text-primary me-2"></i>
+                                        <span class="fs-2 fw-bold text-primary">
+                                            {{ number_format($item['sisa_kuota']) }}
                                         </span>
                                     </div>
-                                    <div class="fs-2hx fw-bolder text-primary lh-1 mb-1">
-                                        {{ number_format($item['sisa_kuota']) }}
-                                    </div>
-                                    <div class="text-gray-600 fw-semibold fs-7">Sisa Kuota</div>
+                                    <div class="fw-semibold fs-6 text-gray-500">Sisa Kuota</div>
                                 </div>
                             </div>
 
                             {{-- Paid --}}
-                            <div class="col-6 col-md-3">
-                                <div class="bg-light-success rounded-3 p-4 text-center h-100">
-                                    <div class="d-flex justify-content-center mb-2">
-                                        <span class="badge badge-circle badge-success p-3">
-                                            <i class="ki-outline ki-check-circle fs-3 text-white"></i>
+                            <div class="col-sm-6 col-xl-3">
+                                <div class="border border-dashed border-success rounded min-w-125px py-3 px-4">
+                                    <div class="d-flex align-items-center mb-1">
+                                        <i class="ki-outline ki-check-circle fs-3 text-success me-2"></i>
+                                        <span class="fs-2 fw-bold text-success">
+                                            {{ number_format($item['paid']) }}
                                         </span>
                                     </div>
-                                    <div class="fs-2hx fw-bolder text-success lh-1 mb-1">
-                                        {{ number_format($item['paid']) }}
-                                    </div>
-                                    <div class="text-gray-600 fw-semibold fs-7">Paid</div>
+                                    <div class="fw-semibold fs-6 text-gray-500">Paid</div>
                                 </div>
                             </div>
 
                             {{-- Pending --}}
-                            <div class="col-6 col-md-3">
-                                <div class="bg-light-warning rounded-3 p-4 text-center h-100">
-                                    <div class="d-flex justify-content-center mb-2">
-                                        <span class="badge badge-circle badge-warning p-3">
-                                            <i class="ki-outline ki-time fs-3 text-white"></i>
+                            <div class="col-sm-6 col-xl-3">
+                                <div class="border border-dashed border-warning rounded min-w-125px py-3 px-4">
+                                    <div class="d-flex align-items-center mb-1">
+                                        <i class="ki-outline ki-time fs-3 text-warning me-2"></i>
+                                        <span class="fs-2 fw-bold text-warning">
+                                            {{ number_format($item['pending']) }}
                                         </span>
                                     </div>
-                                    <div class="fs-2hx fw-bolder text-warning lh-1 mb-1">
-                                        {{ number_format($item['pending']) }}
-                                    </div>
-                                    <div class="text-gray-600 fw-semibold fs-7">Pending</div>
+                                    <div class="fw-semibold fs-6 text-gray-500">Pending</div>
                                 </div>
                             </div>
 
                             {{-- Expired --}}
-                            <div class="col-6 col-md-3">
-                                <div class="bg-light-danger rounded-3 p-4 text-center h-100">
-                                    <div class="d-flex justify-content-center mb-2">
-                                        <span class="badge badge-circle badge-danger p-3">
-                                            <i class="ki-outline ki-cross-circle fs-3 text-white"></i>
+                            <div class="col-sm-6 col-xl-3">
+                                <div class="border border-dashed border-danger rounded min-w-125px py-3 px-4">
+                                    <div class="d-flex align-items-center mb-1">
+                                        <i class="ki-outline ki-cross-circle fs-3 text-danger me-2"></i>
+                                        <span class="fs-2 fw-bold text-danger">
+                                            {{ number_format($item['expired']) }}
                                         </span>
                                     </div>
-                                    <div class="fs-2hx fw-bolder text-danger lh-1 mb-1">
-                                        {{ number_format($item['expired']) }}
-                                    </div>
-                                    <div class="text-gray-600 fw-semibold fs-7">Expired</div>
+                                    <div class="fw-semibold fs-6 text-gray-500">Expired</div>
                                 </div>
                             </div>
 
                         </div>
+                        <!--end::Stats row-->
 
-                        {{-- Progress bar sisa kuota --}}
-                        @php
-                            $totalSold = $item['paid'] + $item['pending'] + $item['expired'];
-                            $totalKuota = $totalSold + $item['sisa_kuota'];
-                            $pctPaid = $totalKuota > 0 ? round(($item['paid'] / $totalKuota) * 100) : 0;
-                            $pctPending = $totalKuota > 0 ? round(($item['pending'] / $totalKuota) * 100) : 0;
-                            $pctExpired = $totalKuota > 0 ? round(($item['expired'] / $totalKuota) * 100) : 0;
-                            $pctSisa = 100 - $pctPaid - $pctPending - $pctExpired;
-                        @endphp
+                        <div class="separator separator-dashed mb-6"></div>
 
-                        <div class="mt-5">
-                            <div class="d-flex justify-content-between mb-2">
-                                <span class="fw-semibold text-gray-700 fs-7">Distribusi Kuota</span>
-                                <span class="fw-semibold text-gray-500 fs-7">Total: {{ number_format($totalKuota) }}
-                                    tiket</span>
+                        <!--begin::Progress-->
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <span class="text-gray-700 fw-bold fs-7">Distribusi Kuota</span>
+                            <span class="text-muted fw-semibold fs-7">Total: {{ number_format($totalKuota) }} tiket</span>
+                        </div>
+
+                        <div class="d-flex rounded overflow-hidden mb-4" style="height: 8px; background: #f1f1f4;">
+                            @if ($pctPaid > 0)
+                                <div class="bg-success" style="width: {{ $pctPaid }}%" data-bs-toggle="tooltip"
+                                    title="Paid: {{ $pctPaid }}%"></div>
+                            @endif
+                            @if ($pctPending > 0)
+                                <div class="bg-warning" style="width: {{ $pctPending }}%" data-bs-toggle="tooltip"
+                                    title="Pending: {{ $pctPending }}%"></div>
+                            @endif
+                            @if ($pctExpired > 0)
+                                <div class="bg-danger" style="width: {{ $pctExpired }}%" data-bs-toggle="tooltip"
+                                    title="Expired: {{ $pctExpired }}%"></div>
+                            @endif
+                            @if ($pctSisa > 0)
+                                <div style="width: {{ $pctSisa }}%; background: #e9edf1;" data-bs-toggle="tooltip"
+                                    title="Sisa: {{ $pctSisa }}%"></div>
+                            @endif
+                        </div>
+
+                        <div class="d-flex flex-wrap gap-5">
+                            <div class="d-flex align-items-center">
+                                <span class="bullet bullet-dot bg-success me-2 h-8px w-8px"></span>
+                                <span class="text-muted fw-semibold fs-7">Paid
+                                    <span class="text-gray-800 fw-bold ms-1">{{ $pctPaid }}%</span>
+                                </span>
                             </div>
-                            <div class="h-10px rounded overflow-hidden d-flex">
-                                @if ($pctPaid > 0)
-                                    <div class="bg-success" style="width: {{ $pctPaid }}%" data-bs-toggle="tooltip"
-                                        title="Paid: {{ $pctPaid }}%"></div>
-                                @endif
-                                @if ($pctPending > 0)
-                                    <div class="bg-warning" style="width: {{ $pctPending }}%" data-bs-toggle="tooltip"
-                                        title="Pending: {{ $pctPending }}%"></div>
-                                @endif
-                                @if ($pctExpired > 0)
-                                    <div class="bg-danger" style="width: {{ $pctExpired }}%" data-bs-toggle="tooltip"
-                                        title="Expired: {{ $pctExpired }}%"></div>
-                                @endif
-                                @if ($pctSisa > 0)
-                                    <div class="bg-light border" style="width: {{ $pctSisa }}%"
-                                        data-bs-toggle="tooltip" title="Sisa: {{ $pctSisa }}%"></div>
-                                @endif
+                            <div class="d-flex align-items-center">
+                                <span class="bullet bullet-dot bg-warning me-2 h-8px w-8px"></span>
+                                <span class="text-muted fw-semibold fs-7">Pending
+                                    <span class="text-gray-800 fw-bold ms-1">{{ $pctPending }}%</span>
+                                </span>
                             </div>
-                            {{-- Legend --}}
-                            <div class="d-flex gap-4 mt-3 flex-wrap">
-                                <div class="d-flex align-items-center gap-2">
-                                    <span class="bullet bullet-dot bg-success h-8px w-8px"></span>
-                                    <span class="text-gray-600 fs-7">Paid ({{ $pctPaid }}%)</span>
-                                </div>
-                                <div class="d-flex align-items-center gap-2">
-                                    <span class="bullet bullet-dot bg-warning h-8px w-8px"></span>
-                                    <span class="text-gray-600 fs-7">Pending ({{ $pctPending }}%)</span>
-                                </div>
-                                <div class="d-flex align-items-center gap-2">
-                                    <span class="bullet bullet-dot bg-danger h-8px w-8px"></span>
-                                    <span class="text-gray-600 fs-7">Expired ({{ $pctExpired }}%)</span>
-                                </div>
-                                <div class="d-flex align-items-center gap-2">
-                                    <span class="bullet bullet-dot bg-secondary h-8px w-8px"></span>
-                                    <span class="text-gray-600 fs-7">Sisa ({{ $pctSisa }}%)</span>
-                                </div>
+                            <div class="d-flex align-items-center">
+                                <span class="bullet bullet-dot bg-danger me-2 h-8px w-8px"></span>
+                                <span class="text-muted fw-semibold fs-7">Expired
+                                    <span class="text-gray-800 fw-bold ms-1">{{ $pctExpired }}%</span>
+                                </span>
+                            </div>
+                            <div class="d-flex align-items-center">
+                                <span class="bullet bullet-dot bg-secondary me-2 h-8px w-8px"></span>
+                                <span class="text-muted fw-semibold fs-7">Sisa
+                                    <span class="text-gray-800 fw-bold ms-1">{{ $pctSisa }}%</span>
+                                </span>
                             </div>
                         </div>
+                        <!--end::Progress-->
 
                     </div>
                     <!--end::Card body-->
                 </div>
+
             @empty
-                <div class="card">
+                <div class="card card-flush">
                     <div class="card-body text-center py-20">
-                        <i class="ki-outline ki-ticket fs-5x text-gray-300 mb-5 d-block"></i>
-                        <h3 class="text-gray-600 fw-semibold">Belum ada data tiket</h3>
-                        <p class="text-gray-400 fs-6">Data ringkasan akan muncul setelah tiket dibuat.</p>
-                        <a href="{{ route('superadmin.ticket') }}" class="btn btn-primary mt-2">
-                            <i class="ki-outline ki-plus me-2"></i>Buat Tiket
+                        <i class="ki-outline ki-ticket fs-5x text-gray-200 mb-5 d-block"></i>
+                        <h3 class="text-gray-600 fw-bold fs-3 mb-2">Belum ada data tiket</h3>
+                        <span class="text-gray-400 fw-semibold fs-6 d-block mb-7">
+                            Data ringkasan akan muncul setelah tiket dibuat dan ada order masuk.
+                        </span>
+                        <a href="{{ route('superadmin.ticket') }}" class="btn btn-primary">
+                            <i class="ki-outline ki-plus fs-2 me-1"></i>Buat Tiket Sekarang
                         </a>
                     </div>
                 </div>
@@ -204,14 +220,13 @@
         </div>
     </div>
     <!--end::Content-->
-
-    @push('scripts')
-        <script>
-            // Aktifkan semua tooltip Bootstrap
-            var tooltipEls = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-            tooltipEls.forEach(function(el) {
-                new bootstrap.Tooltip(el);
-            });
-        </script>
-    @endpush
 @endsection
+
+@push('scripts')
+    <script>
+        var tooltipEls = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        tooltipEls.forEach(function(el) {
+            new bootstrap.Tooltip(el);
+        });
+    </script>
+@endpush
