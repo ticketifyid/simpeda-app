@@ -17,7 +17,7 @@ class DashboardController extends Controller
 
     public function index(Request $request)
     {
-        $token   = session('token');
+        $token   = session('api_token');
         $summary = [];
         $error   = null;
 
@@ -27,7 +27,7 @@ class DashboardController extends Controller
             if ($response->successful()) {
                 $summary = $response->json('data', []);
             } else {
-                $error = 'Gagal mengambil data ringkasan order.';
+                $error = 'Gagal mengambil data ringkasan order. (' . $response->status() . ')';
             }
         } catch (\Throwable $e) {
             $error = 'Terjadi kesalahan: ' . $e->getMessage();
