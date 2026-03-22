@@ -146,4 +146,8 @@ class ApiService
     {
         return $this->client($token)->get('/admin/orders/export', $filters);
     }
+    public function getOrderSummary(string $token)
+    {
+        return $this->client($token)->get('/admin/orders/summary');
+    }
 }
