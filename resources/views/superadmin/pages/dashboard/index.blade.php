@@ -145,7 +145,7 @@
                         <div class="separator separator-dashed mb-6"></div>
 
                         <!--begin::Progress-->
-                        <div class="d-flex justify-content-between align-items-center mb-2">
+                        {{-- <div class="d-flex justify-content-between align-items-center mb-2">
                             <span class="text-gray-700 fw-bold fs-7">Distribusi Kuota</span>
                             <span class="text-muted fw-semibold fs-7">Total: {{ number_format($totalKuota) }} tiket</span>
                         </div>
@@ -194,7 +194,7 @@
                                     <span class="text-gray-800 fw-bold ms-1">{{ $pctSisa }}%</span>
                                 </span>
                             </div>
-                        </div>
+                        </div> --}}
                         <!--end::Progress-->
 
                     </div>
