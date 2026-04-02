@@ -150,4 +150,14 @@ class ApiService
     {
         return $this->client($token)->get('/admin/orders/summary');
     }
+    // Notification Logs - Admin
+    public function getNotificationLogs(string $token)
+    {
+        return $this->client($token)->get('/admin/notification-logs');
+    }
+
+    public function retryNotification(string $token, int $id)
+    {
+        return $this->client($token)->post("/admin/notification-logs/{$id}/retry");
+    }
 }

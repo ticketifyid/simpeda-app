@@ -7,6 +7,7 @@ use App\Http\Controllers\Superadmin\DashboardController as SuperadminDashboardCo
 use App\Http\Controllers\Superadmin\DiscountController as SuperadminDiscountController;
 use App\Http\Controllers\Superadmin\OrderController as SuperadminOrderController;
 use App\Http\Controllers\Superadmin\TicketController as SuperadminTicketController;
+use App\Http\Controllers\Superadmin\NotificationLogController as SuperadminNotificationLogController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('api.guest')->group(function () {
@@ -52,5 +53,9 @@ Route::middleware('api.auth')->group(function () {
         Route::get('/order', [SuperadminOrderController::class, 'index'])->name('superadmin.order');
         Route::put('/order/{id}/status', [SuperadminOrderController::class, 'updateStatus'])->name('superadmin.order.updateStatus');
         Route::delete('/order/{id}', [SuperadminOrderController::class, 'destroy'])->name('superadmin.order.destroy');
+
+        // Notification Logs
+        Route::get('/notification-log', [SuperadminNotificationLogController::class, 'index'])->name('superadmin.notification-log');
+        Route::post('/notification-log/{id}/retry', [SuperadminNotificationLogController::class, 'retry'])->name('superadmin.notification-log.retry');
     });
 });
