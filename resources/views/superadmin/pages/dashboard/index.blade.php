@@ -53,10 +53,6 @@
             @forelse($summary as $item)
                 @php
                     $totalKuota = $item['paid'] + $item['pending'] + $item['sisa_kuota'];
-                    $pctPaid = $totalKuota > 0 ? round(($item['paid'] / $totalKuota) * 100) : 0;
-                    $pctPending = $totalKuota > 0 ? round(($item['pending'] / $totalKuota) * 100) : 0;
-                    $pctExpired = $totalKuota > 0 ? round(($item['expired'] / $totalKuota) * 100) : 0;
-                    $pctSisa = 100 - $pctPaid - $pctPending - $pctExpired;
                 @endphp
 
                 <div class="card card-flush mb-7">
@@ -84,7 +80,10 @@
                     <!--begin::Card body-->
                     <div class="card-body pt-5 pb-7">
 
-                        <!--begin::Stats row-->
+                        {{-- ===== Order Normal ===== --}}
+                        <div class="mb-2">
+                            <span class="text-gray-700 fw-bold fs-7 text-uppercase ls-1">Order Normal</span>
+                        </div>
                         <div class="row g-5 mb-7">
 
                             {{-- Sisa Kuota --}}
@@ -140,62 +139,46 @@
                             </div>
 
                         </div>
-                        <!--end::Stats row-->
+                        <!--end::Stats row normal-->
 
                         <div class="separator separator-dashed mb-6"></div>
 
-                        <!--begin::Progress-->
-                        {{-- <div class="d-flex justify-content-between align-items-center mb-2">
-                            <span class="text-gray-700 fw-bold fs-7">Distribusi Kuota</span>
-                            <span class="text-muted fw-semibold fs-7">Total: {{ number_format($totalKuota) }} tiket</span>
+                        {{-- ===== Order Manual (Admin) ===== --}}
+                        <div class="mb-2">
+                            <span class="text-gray-700 fw-bold fs-7 text-uppercase ls-1">Order Manual (Admin)</span>
                         </div>
+                        <div class="row g-5">
 
-                        <div class="d-flex rounded overflow-hidden mb-4" style="height: 8px; background: #f1f1f4;">
-                            @if ($pctPaid > 0)
-                                <div class="bg-success" style="width: {{ $pctPaid }}%" data-bs-toggle="tooltip"
-                                    title="Paid: {{ $pctPaid }}%"></div>
-                            @endif
-                            @if ($pctPending > 0)
-                                <div class="bg-warning" style="width: {{ $pctPending }}%" data-bs-toggle="tooltip"
-                                    title="Pending: {{ $pctPending }}%"></div>
-                            @endif
-                            @if ($pctExpired > 0)
-                                <div class="bg-danger" style="width: {{ $pctExpired }}%" data-bs-toggle="tooltip"
-                                    title="Expired: {{ $pctExpired }}%"></div>
-                            @endif
-                            @if ($pctSisa > 0)
-                                <div style="width: {{ $pctSisa }}%; background: #e9edf1;" data-bs-toggle="tooltip"
-                                    title="Sisa: {{ $pctSisa }}%"></div>
-                            @endif
+                            {{-- Manual Paid --}}
+                            <div class="col-sm-6 col-xl-3">
+                                <div class="border border-dashed border-success rounded min-w-125px py-3 px-4"
+                                    style="border-style: solid !important; opacity: 0.75;">
+                                    <div class="d-flex align-items-center mb-1">
+                                        <i class="ki-outline ki-shield-tick fs-3 text-success me-2"></i>
+                                        <span class="fs-2 fw-bold text-success">
+                                            {{ number_format($item['manual_paid']) }}
+                                        </span>
+                                    </div>
+                                    <div class="fw-semibold fs-6 text-gray-500">Manual Paid</div>
+                                </div>
+                            </div>
+
+                            {{-- Manual Pending --}}
+                            <div class="col-sm-6 col-xl-3">
+                                <div class="border border-dashed border-warning rounded min-w-125px py-3 px-4"
+                                    style="border-style: solid !important; opacity: 0.75;">
+                                    <div class="d-flex align-items-center mb-1">
+                                        <i class="ki-outline ki-shield fs-3 text-warning me-2"></i>
+                                        <span class="fs-2 fw-bold text-warning">
+                                            {{ number_format($item['manual_pending']) }}
+                                        </span>
+                                    </div>
+                                    <div class="fw-semibold fs-6 text-gray-500">Manual Pending</div>
+                                </div>
+                            </div>
+
                         </div>
-
-                        <div class="d-flex flex-wrap gap-5">
-                            <div class="d-flex align-items-center">
-                                <span class="bullet bullet-dot bg-success me-2 h-8px w-8px"></span>
-                                <span class="text-muted fw-semibold fs-7">Paid
-                                    <span class="text-gray-800 fw-bold ms-1">{{ $pctPaid }}%</span>
-                                </span>
-                            </div>
-                            <div class="d-flex align-items-center">
-                                <span class="bullet bullet-dot bg-warning me-2 h-8px w-8px"></span>
-                                <span class="text-muted fw-semibold fs-7">Pending
-                                    <span class="text-gray-800 fw-bold ms-1">{{ $pctPending }}%</span>
-                                </span>
-                            </div>
-                            <div class="d-flex align-items-center">
-                                <span class="bullet bullet-dot bg-danger me-2 h-8px w-8px"></span>
-                                <span class="text-muted fw-semibold fs-7">Expired
-                                    <span class="text-gray-800 fw-bold ms-1">{{ $pctExpired }}%</span>
-                                </span>
-                            </div>
-                            <div class="d-flex align-items-center">
-                                <span class="bullet bullet-dot bg-secondary me-2 h-8px w-8px"></span>
-                                <span class="text-muted fw-semibold fs-7">Sisa
-                                    <span class="text-gray-800 fw-bold ms-1">{{ $pctSisa }}%</span>
-                                </span>
-                            </div>
-                        </div> --}}
-                        <!--end::Progress-->
+                        <!--end::Stats row manual-->
 
                     </div>
                     <!--end::Card body-->
