@@ -30,13 +30,12 @@
                 data-kt-menu="true" data-kt-menu-expand="false">
                 <!--begin:Menu item-->
                 <div class="menu-item">
-                    <!--begin:Menu content-->
                     <div class="menu-content">
                         <span class="menu-heading fw-bold text-uppercase fs-7">Pages</span>
                     </div>
-                    <!--end:Menu content-->
                 </div>
                 <!--end:Menu item-->
+
                 <!--begin:Menu item-->
                 <div class="menu-item {{ request()->routeIs('superadmin.dashboard') ? 'here show' : '' }}">
                     <a href="{{ route('superadmin.dashboard') }}"
@@ -84,12 +83,26 @@
                     </a>
                 </div>
                 <!--end:Menu item-->
+
+                <!--begin:Menu item-->
+                <div class="menu-item {{ request()->routeIs('superadmin.notification-log*') ? 'here show' : '' }}">
+                    <a href="{{ route('superadmin.notification-log') }}"
+                        class="menu-link {{ request()->routeIs('superadmin.notification-log*') ? 'active' : '' }}">
+                        <span class="menu-icon">
+                            <i class="ki-outline ki-notification-status fs-2"></i>
+                        </span>
+                        <span class="menu-title">Notification Logs</span>
+                    </a>
+                </div>
+                <!--end:Menu item-->
+
             </div>
             <!--end::Menu-->
         </div>
         <!--end::Menu wrapper-->
     </div>
     <!--end::sidebar menu-->
+
     <!--begin::Footer-->
     <div class="app-sidebar-footer d-flex align-items-center px-8 pb-10" id="kt_app_sidebar_footer">
         <!--begin::User-->
@@ -108,33 +121,25 @@
                 <!--end::Name-->
             </div>
             <!--end::User info-->
+
             <!--begin::User account menu-->
             <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg menu-state-color fw-semibold py-4 fs-6 w-275px"
                 data-kt-menu="true">
                 <!--begin::Menu item-->
                 <div class="menu-item px-3">
                     <div class="menu-content d-flex align-items-center px-3">
-                        <!--begin::Avatar-->
                         <div class="symbol symbol-50px me-5">
                             <img alt="Logo" src="assets/media/avatars/300-1.jpg" />
                         </div>
-                        <!--end::Avatar-->
-                        <!--begin::Username-->
                         <div class="d-flex flex-column">
-                            <div class="fw-bold d-flex align-items-center fs-5">Admin Simpeda
-                                {{-- <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Pro</span> --}}
-                            </div>
+                            <div class="fw-bold d-flex align-items-center fs-5">Admin Simpeda</div>
                             <a href="#"
                                 class="fw-semibold text-muted text-hover-primary fs-7">admin@simpeda.com</a>
                         </div>
-                        <!--end::Username-->
                     </div>
                 </div>
                 <!--end::Menu item-->
-                <!--begin::Menu separator-->
                 <div class="separator my-2"></div>
-                <!--end::Menu separator-->
-                <!--begin::Menu item-->
                 <div class="menu-item px-5">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
@@ -143,7 +148,6 @@
                         </button>
                     </form>
                 </div>
-                <!--end::Menu item-->
             </div>
             <!--end::User account menu-->
         </div>
