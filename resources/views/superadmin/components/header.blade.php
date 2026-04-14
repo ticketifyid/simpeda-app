@@ -8,8 +8,8 @@
                 <i class="ki-outline ki-abstract-14 fs-2"></i>
             </div>
             <!--begin::Logo image-->
-            <a href="index.html">
-                <img alt="Logo" src="assets/media/logs/demo42-small.svg" class="h-30px" />
+            <a href="{{ route('superadmin.dashboard') }}">
+                <img alt="Ticketify" src="assets/media/logos/ticketify.jpg" class="h-40px" style="border-radius: 8px;" />
             </a>
             <!--end::Logo image-->
         </div>

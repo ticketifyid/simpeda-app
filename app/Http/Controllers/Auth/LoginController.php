@@ -40,7 +40,7 @@ class LoginController extends Controller
         // Redirect sesuai role
         return match ($data['role']) {
             'superadmin' => redirect()->route('superadmin.dashboard'),
-            'admin'      => redirect()->route('admin.dashboard'),
+            'admin'      => redirect()->route('admin.checkin'),
             default      => redirect()->route('login'),
         };
     }

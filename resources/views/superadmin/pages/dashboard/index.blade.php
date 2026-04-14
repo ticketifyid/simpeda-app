@@ -62,15 +62,11 @@
                             <div class="d-flex align-items-center gap-4">
                                 <div class="symbol symbol-50px">
                                     <div class="symbol-label bg-light-primary">
-                                        <i class="ki-outline ki-ticket fs-1 text-primary"></i>
+                                        <i class="ki-outline ki-tag fs-1 text-primary"></i>
                                     </div>
                                 </div>
                                 <div class="d-flex flex-column">
                                     <span class="text-gray-900 fw-bold fs-4">{{ $item['ticket_name'] }}</span>
-                                    <span class="text-muted fw-semibold fs-7 mt-1">
-                                        <span class="badge badge-light fw-semibold me-1">ID #{{ $item['ticket_id'] }}</span>
-                                        Total {{ number_format($totalKuota) }} tiket tersedia
-                                    </span>
                                 </div>
                             </div>
                         </div>
@@ -90,7 +86,7 @@
                             <div class="col-sm-6 col-xl-3">
                                 <div class="border border-dashed border-primary rounded min-w-125px py-3 px-4">
                                     <div class="d-flex align-items-center mb-1">
-                                        <i class="ki-outline ki-abstract-26 fs-3 text-primary me-2"></i>
+                                        <i class="ki-outline ki-chart-simple fs-3 text-primary me-2"></i>
                                         <span class="fs-2 fw-bold text-primary">
                                             {{ number_format($item['sisa_kuota']) }}
                                         </span>
@@ -154,7 +150,7 @@
                                 <div class="border border-dashed border-success rounded min-w-125px py-3 px-4"
                                     style="border-style: solid !important; opacity: 0.75;">
                                     <div class="d-flex align-items-center mb-1">
-                                        <i class="ki-outline ki-shield-tick fs-3 text-success me-2"></i>
+                                        <i class="ki-outline ki-check-circle fs-3 text-success me-2"></i>
                                         <span class="fs-2 fw-bold text-success">
                                             {{ number_format($item['manual_paid']) }}
                                         </span>
@@ -168,7 +164,7 @@
                                 <div class="border border-dashed border-warning rounded min-w-125px py-3 px-4"
                                     style="border-style: solid !important; opacity: 0.75;">
                                     <div class="d-flex align-items-center mb-1">
-                                        <i class="ki-outline ki-shield fs-3 text-warning me-2"></i>
+                                        <i class="ki-outline ki-time fs-3 text-warning me-2"></i>
                                         <span class="fs-2 fw-bold text-warning">
                                             {{ number_format($item['manual_pending']) }}
                                         </span>
@@ -187,7 +183,7 @@
             @empty
                 <div class="card card-flush">
                     <div class="card-body text-center py-20">
-                        <i class="ki-outline ki-ticket fs-5x text-gray-200 mb-5 d-block"></i>
+                        <i class="ki-outline ki-tag fs-5x text-gray-200 mb-5 d-block"></i>
                         <h3 class="text-gray-600 fw-bold fs-3 mb-2">Belum ada data tiket</h3>
                         <span class="text-gray-400 fw-semibold fs-6 d-block mb-7">
                             Data ringkasan akan muncul setelah tiket dibuat dan ada order masuk.

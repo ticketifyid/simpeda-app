@@ -160,4 +160,20 @@ class ApiService
     {
         return $this->client($token)->post("/admin/notification-logs/{$id}/retry");
     }
+
+    // Check-in - Admin
+    public function checkin(string $token, array $data)
+    {
+        return $this->client($token)->post('/admin/orders/checkin', $data);
+    }
+
+    public function getMyCheckins(string $token)
+    {
+        return $this->client($token)->get('/admin/orders/checkin/my');
+    }
+
+    public function getAllCheckinLogs(string $token)
+    {
+        return $this->client($token)->get('/admin/checkin/logs');
+    }
 }

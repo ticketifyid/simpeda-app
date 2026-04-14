@@ -2,12 +2,10 @@
 <div id="kt_app_sidebar" class="app-sidebar flex-column" data-kt-drawer="true" data-kt-drawer-name="app-sidebar"
     data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="250px"
     data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
-    <div class="app-sidebar-logo flex-shrink-0 d-none d-md-flex align-items-center px-8" id="kt_app_sidebar_logo">
+    <div class="app-sidebar-logo flex-shrink-0 d-none d-md-flex align-items-center justify-content-center px-8" id="kt_app_sidebar_logo">
         <!--begin::Logo-->
-        <a href="index.html">
-            <img alt="Logo" src="assets/media/logos/demo42.svg"
-                class="h-25px d-none d-sm-inline app-sidebar-logo-default theme-light-show" />
-            <img alt="Logo" src="assets/media/logos/demo42-dark.svg" class="h-25px h-lg-25px theme-dark-show" />
+        <a href="{{ route('admin.checkin') }}">
+            <img alt="Ticketify" src="assets/media/logos/ticketify.jpg" class="h-70px" style="border-radius: 10px;" />
         </a>
         <!--end::Logo-->
         <!--begin::Aside toggle-->
@@ -29,22 +27,23 @@
             <div class="menu menu-column menu-rounded menu-sub-indention fw-semibold px-1" id="#kt_app_sidebar_menu"
                 data-kt-menu="true" data-kt-menu-expand="false">
                 <!--begin:Menu item-->
-                <div data-kt-menu-trigger="click" class="menu-item here show menu-accordion">
-                    <a href="{{ route('admin.dashboard') }}" class="menu-link">
+                <div class="menu-item {{ request()->routeIs('admin.checkin') ? 'here' : '' }}">
+                    <a href="{{ route('admin.checkin') }}" class="menu-link {{ request()->routeIs('admin.checkin') ? 'active' : '' }}">
                         <span class="menu-icon">
-                            <i class="ki-outline ki-element-11 fs-2"></i>
+                            <i class="ki-outline ki-scan-barcode fs-2"></i>
                         </span>
-                        <span class="menu-title">Dashboards</span>
+                        <span class="menu-title">Check-in</span>
                     </a>
                 </div>
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
-                <div class="menu-item pt-5">
-                    <!--begin:Menu content-->
-                    <div class="menu-content">
-                        <span class="menu-heading fw-bold text-uppercase fs-7">Pages</span>
-                    </div>
-                    <!--end:Menu content-->
+                <div class="menu-item {{ request()->routeIs('admin.checkin.my') ? 'here' : '' }}">
+                    <a href="{{ route('admin.checkin.my') }}" class="menu-link {{ request()->routeIs('admin.checkin.my') ? 'active' : '' }}">
+                        <span class="menu-icon">
+                            <i class="ki-outline ki-time fs-2"></i>
+                        </span>
+                        <span class="menu-title">Riwayat Saya</span>
+                    </a>
                 </div>
                 <!--end:Menu item-->
             </div>
@@ -66,7 +65,7 @@
                 <!--begin::Name-->
                 <div class="d-flex flex-column align-items-start justify-content-center ms-3">
                     <span class="text-gray-500 fs-8 fw-semibold">Hello</span>
-                    <a href="#" class="text-gray-800 fs-7 fw-bold text-hover-primary">Admin Simpeda</a>
+                    <a href="#" class="text-gray-800 fs-7 fw-bold text-hover-primary">{{ session('user.name') }}</a>
                 </div>
                 <!--end::Name-->
             </div>
@@ -84,11 +83,8 @@
                         <!--end::Avatar-->
                         <!--begin::Username-->
                         <div class="d-flex flex-column">
-                            <div class="fw-bold d-flex align-items-center fs-5">Admin Simpeda
-                                {{-- <span class="badge badge-light-success fw-bold fs-8 px-2 py-1 ms-2">Pro</span> --}}
-                            </div>
-                            <a href="#"
-                                class="fw-semibold text-muted text-hover-primary fs-7">admin@simpeda.com</a>
+                            <div class="fw-bold d-flex align-items-center fs-5">{{ session('user.name') }}</div>
+                            <span class="fw-semibold text-muted fs-7">{{ session('user.email') }}</span>
                         </div>
                         <!--end::Username-->
                     </div>

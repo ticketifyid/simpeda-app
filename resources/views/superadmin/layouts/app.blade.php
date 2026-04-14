@@ -15,7 +15,7 @@ License: For each use you must have a valid license purchased from Ticketify.
 
 <head>
     <base href="../" />
-    <title>Simpeda - Ticketify</title>
+    <title>Ticketify</title>
     <meta charset="utf-8" />
     <meta name="description" content="Simpeda by Ticketify" />
     <meta name="keywords" content="simpeda, ticketify" />
@@ -26,7 +26,7 @@ License: For each use you must have a valid license purchased from Ticketify.
     <meta property="og:url" content="https://simpeda.ticketify.id" />
     <meta property="og:site_name" content="Simpeda by Ticketify" />
     <link rel="canonical" href="https://simpeda.ticketify.id" />
-    <link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
+    <link rel="shortcut icon" href="assets/media/logos/ticketify.jpg" />
     <!--begin::Fonts(mandatory for all pages)-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
     <!--end::Fonts-->

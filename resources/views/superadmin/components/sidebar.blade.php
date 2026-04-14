@@ -2,12 +2,10 @@
 <div id="kt_app_sidebar" class="app-sidebar flex-column" data-kt-drawer="true" data-kt-drawer-name="app-sidebar"
     data-kt-drawer-activate="{default: true, lg: false}" data-kt-drawer-overlay="true" data-kt-drawer-width="250px"
     data-kt-drawer-direction="start" data-kt-drawer-toggle="#kt_app_sidebar_mobile_toggle">
-    <div class="app-sidebar-logo flex-shrink-0 d-none d-md-flex align-items-center px-8" id="kt_app_sidebar_logo">
+    <div class="app-sidebar-logo flex-shrink-0 d-none d-md-flex align-items-center justify-content-center px-8" id="kt_app_sidebar_logo">
         <!--begin::Logo-->
-        <a href="index.html">
-            <img alt="Logo" src="assets/media/logs/demo42.svg"
-                class="h-25px d-none d-sm-inline app-sidebar-logo-default theme-light-show" />
-            <img alt="Logo" src="assets/media/logs/demo42-dark.svg" class="h-25px h-lg-25px theme-dark-show" />
+        <a href="{{ route('superadmin.dashboard') }}">
+            <img alt="Ticketify" src="assets/media/logos/ticketify.jpg" class="h-70px" style="border-radius: 10px;" />
         </a>
         <!--end::Logo-->
         <!--begin::Aside toggle-->
@@ -96,6 +94,18 @@
                 </div>
                 <!--end:Menu item-->
 
+                <!--begin:Menu item-->
+                <div class="menu-item {{ request()->routeIs('superadmin.checkin-log*') ? 'here show' : '' }}">
+                    <a href="{{ route('superadmin.checkin-log') }}"
+                        class="menu-link {{ request()->routeIs('superadmin.checkin-log*') ? 'active' : '' }}">
+                        <span class="menu-icon">
+                            <i class="ki-outline ki-scan-barcode fs-2"></i>
+                        </span>
+                        <span class="menu-title">Check-in Logs</span>
+                    </a>
+                </div>
+                <!--end:Menu item-->
+
             </div>
             <!--end::Menu-->
         </div>
@@ -116,7 +126,7 @@
                 <!--begin::Name-->
                 <div class="d-flex flex-column align-items-start justify-content-center ms-3">
                     <span class="text-gray-500 fs-8 fw-semibold">Hello</span>
-                    <a href="#" class="text-gray-800 fs-7 fw-bold text-hover-primary">Admin Simpeda</a>
+                    <a href="#" class="text-gray-800 fs-7 fw-bold text-hover-primary">{{ session('user.name') }}</a>
                 </div>
                 <!--end::Name-->
             </div>
@@ -132,9 +142,8 @@
                             <img alt="Logo" src="assets/media/avatars/300-1.jpg" />
                         </div>
                         <div class="d-flex flex-column">
-                            <div class="fw-bold d-flex align-items-center fs-5">Admin Simpeda</div>
-                            <a href="#"
-                                class="fw-semibold text-muted text-hover-primary fs-7">admin@simpeda.com</a>
+                            <div class="fw-bold d-flex align-items-center fs-5">{{ session('user.name') }}</div>
+                            <span class="fw-semibold text-muted fs-7">{{ session('user.email') }}</span>
                         </div>
                     </div>
                 </div>

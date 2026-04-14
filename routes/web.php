@@ -1,12 +1,13 @@
 <?php
 
-use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\CheckinController as AdminCheckinController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Guest\LandingController;
 use App\Http\Controllers\Superadmin\DashboardController as SuperadminDashboardController;
 use App\Http\Controllers\Superadmin\DiscountController as SuperadminDiscountController;
 use App\Http\Controllers\Superadmin\OrderController as SuperadminOrderController;
 use App\Http\Controllers\Superadmin\TicketController as SuperadminTicketController;
+use App\Http\Controllers\Superadmin\CheckinLogController as SuperadminCheckinLogController;
 use App\Http\Controllers\Superadmin\NotificationLogController as SuperadminNotificationLogController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,7 +31,10 @@ Route::get('/order/{orderId}/success', [LandingController::class, 'thankYou'])->
 Route::middleware('api.auth')->group(function () {
 
     Route::middleware('role:admin')->prefix('admin')->group(function () {
-        Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('admin.dashboard');
+        // Check-in
+        Route::get('/checkin', [AdminCheckinController::class, 'index'])->name('admin.checkin');
+        Route::post('/checkin', [AdminCheckinController::class, 'store'])->name('admin.checkin.store');
+        Route::get('/checkin/my', [AdminCheckinController::class, 'myCheckins'])->name('admin.checkin.my');
     });
 
     Route::middleware('role:superadmin')->prefix('superadmin')->group(function () {
@@ -57,5 +61,8 @@ Route::middleware('api.auth')->group(function () {
         // Notification Logs
         Route::get('/notification-log', [SuperadminNotificationLogController::class, 'index'])->name('superadmin.notification-log');
         Route::post('/notification-log/{id}/retry', [SuperadminNotificationLogController::class, 'retry'])->name('superadmin.notification-log.retry');
+
+        // Checkin Logs
+        Route::get('/checkin-log', [SuperadminCheckinLogController::class, 'index'])->name('superadmin.checkin-log');
     });
 });
