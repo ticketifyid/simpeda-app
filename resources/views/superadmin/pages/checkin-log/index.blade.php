@@ -127,25 +127,28 @@
                                     </div>
                                     <div class="d-flex justify-content-between text-center">
                                         <div>
-                                            <div class="text-success fw-bold fs-2">{{ $t['checked_in_qty'] }}</div>
+                                            <div class="text-success fw-bold fs-3">{{ $t['checked_in_orders'] }}</div>
+                                            <div class="text-muted fs-8">{{ $t['checked_in_tickets'] }} tiket</div>
                                             <div class="text-muted fs-7">Sudah Check-in</div>
                                         </div>
                                         <div class="border-start border-gray-200 mx-3"></div>
                                         <div>
-                                            <div class="text-warning fw-bold fs-2">{{ $t['remaining_qty'] }}</div>
+                                            <div class="text-warning fw-bold fs-3">{{ $t['remaining_orders'] }}</div>
+                                            <div class="text-muted fs-8">{{ $t['remaining_tickets'] }} tiket</div>
                                             <div class="text-muted fs-7">Belum Check-in</div>
                                         </div>
                                         <div class="border-start border-gray-200 mx-3"></div>
                                         <div>
-                                            <div class="text-gray-800 fw-bold fs-2">{{ $t['paid_qty'] }}</div>
+                                            <div class="text-gray-800 fw-bold fs-3">{{ $t['paid_orders'] }}</div>
+                                            <div class="text-muted fs-8">{{ $t['paid_tickets'] }} tiket</div>
                                             <div class="text-muted fs-7">Total Paid</div>
                                         </div>
                                     </div>
                                     {{-- Progress bar --}}
                                     @php
                                         $pct =
-                                            $t['paid_qty'] > 0
-                                                ? round(($t['checked_in_qty'] / $t['paid_qty']) * 100)
+                                            $t['paid_tickets'] > 0
+                                                ? round(($t['checked_in_tickets'] / $t['paid_tickets']) * 100)
                                                 : 0;
                                     @endphp
                                     <div class="mt-4">
